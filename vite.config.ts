@@ -7,6 +7,7 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
   vite: {
+    base: "/santa-catalina-web/",
     server: {
       host: "0.0.0.0",
       port: 8080,
