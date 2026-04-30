@@ -4,10 +4,11 @@
 //     componentTagger (dev-only), VITE_* env injection, @ path alias, React/TanStack dedupe,
 //     error logger plugins, and sandbox detection.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { nitro } from "nitro/vite";
 
 export default defineConfig({
   vite: {
-    base: "/santa-catalina-web/",
+    plugins: [nitro()],
     server: {
       host: "0.0.0.0",
       port: 8080,
