@@ -1,0 +1,35 @@
+Productos con imagen nueva incluidos: 317
+El ZIP de imágenes contenía 317 archivos PNG detectados.
+Todos fueron copiados a public/products y cargados en src/lib/products.ts.
+
+Conteo por categoría:
+- Herramientas manuales: 28
+- Herramientas eléctricas: 27
+- Construcción: 30
+- Pinturas: 30
+- Hogar y deco: 30
+- Campo y jardín: 30
+- Electricidad: 22
+- Iluminación: 20
+- Plomería: 20
+- Sanitarios y grifería: 20
+- Ferretería general: 20
+- Seguridad industrial: 20
+- Automotor: 20
+
+Clasificados automáticamente por no coincidir exactamente con el catálogo anterior:
+- Alicate universal Stanley 8″
+- Bisagras de cazoleta para mueble x4
+- Bisagras puerta 3″ cromadas par
+- Caño agua presión 1/2″ x 6m
+- Cortina de baño antimoho 180x180
+- Cuadro decorativo paisaje 80x60
+- Espejo retráctil de baño aumento x5
+- Flexible acero 1/2″ 50cm
+- Kit llaves de tubo Truper x40 piezas
+- Llave ajustable Stanley 10
+- Pincel Tigre 2″ cerda natural
+- Set accesorios baño cromados x5
+- Set destornilladores precisión Truper x6
+- Set llaves combinadas Stanley x10
+- Válvula esférica bronce 1/2″

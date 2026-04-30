@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://santa-catalina-premium-mart.lovable.app/sitemap.xml

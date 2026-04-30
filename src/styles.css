@@ -1,0 +1,305 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap");
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Santa Catalina — Design System
+ * Paleta: navy #06164f · naranja #ff4a12 · crema #f4f0ea · verde WhatsApp #25d366
+ * Tipografía: Manrope (display) · Inter (body)
+ */
+
+@theme inline {
+  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 8px);
+  --radius-2xl: calc(var(--radius) + 16px);
+  --radius-3xl: calc(var(--radius) + 24px);
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-navy: hsl(var(--navy));
+  --color-navy-deep: hsl(var(--navy-deep));
+  --color-orange: hsl(var(--orange));
+  --color-orange-soft: hsl(var(--orange-soft));
+  --color-cream: hsl(var(--cream));
+  --color-cream-deep: hsl(var(--cream-deep));
+  --color-whatsapp: hsl(var(--whatsapp));
+  --color-ink: hsl(var(--ink));
+}
+
+:root {
+  --radius: 1.25rem;
+
+  --navy: 232 86% 17%;
+  --navy-deep: 232 84% 11%;
+  --orange: 14 100% 54%;
+  --orange-soft: 18 100% 58%;
+  --cream: 38 33% 94%;
+  --cream-deep: 38 25% 90%;
+  --whatsapp: 142 70% 49%;
+  --ink: 230 35% 9%;
+
+  --background: 38 33% 96%;
+  --foreground: 230 35% 9%;
+  --card: 0 0% 100%;
+  --card-foreground: 230 35% 9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 230 35% 9%;
+  --primary: 232 86% 17%;
+  --primary-foreground: 38 33% 96%;
+  --secondary: 38 30% 92%;
+  --secondary-foreground: 232 86% 17%;
+  --muted: 38 25% 90%;
+  --muted-foreground: 220 9% 46%;
+  --accent: 14 100% 54%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 232 20% 88%;
+  --input: 232 20% 88%;
+  --ring: 14 100% 54%;
+
+  --shadow-soft: 0 12px 34px -8px hsl(232 86% 17% / 0.12);
+  --shadow-strong: 0 24px 70px -14px hsl(232 86% 17% / 0.22);
+  --shadow-orange: 0 18px 42px -10px hsl(14 100% 54% / 0.35);
+  --gradient-navy: linear-gradient(135deg, hsl(232 84% 11%), hsl(232 86% 17%));
+  --gradient-orange: linear-gradient(135deg, hsl(14 100% 54%), hsl(18 100% 58%));
+  --gradient-hero: linear-gradient(90deg, hsl(232 86% 11% / 0.96) 0%, hsl(232 86% 17% / 0.78) 42%, hsl(232 86% 17% / 0.18) 100%);
+}
+
+.dark {
+  --background: 232 40% 6%;
+  --foreground: 38 33% 96%;
+  --card: 232 40% 10%;
+  --card-foreground: 38 33% 96%;
+  --popover: 232 40% 10%;
+  --popover-foreground: 38 33% 96%;
+  --primary: 38 33% 96%;
+  --primary-foreground: 232 86% 17%;
+  --secondary: 232 30% 14%;
+  --secondary-foreground: 38 33% 96%;
+  --muted: 232 30% 14%;
+  --muted-foreground: 220 14% 65%;
+  --accent: 14 100% 54%;
+  --accent-foreground: 0 0% 100%;
+  --border: 232 30% 18%;
+  --input: 232 30% 18%;
+  --ring: 14 100% 54%;
+  --shadow-soft: 0 12px 34px -8px hsl(0 0% 0% / 0.4);
+  --shadow-strong: 0 24px 70px -14px hsl(0 0% 0% / 0.55);
+}
+
+@layer base {
+  * { border-color: hsl(var(--border)); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+    font-weight: 800;
+  }
+  ::selection {
+    background-color: hsl(var(--orange) / 0.25);
+    color: hsl(var(--navy));
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-strong { box-shadow: var(--shadow-strong); }
+  .shadow-orange { box-shadow: var(--shadow-orange); }
+  .bg-gradient-navy { background-image: var(--gradient-navy); }
+  .bg-gradient-orange { background-image: var(--gradient-orange); }
+  .bg-gradient-hero { background-image: var(--gradient-hero); }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes marquee-reverse {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+  }
+  .animate-marquee { animation: marquee 38s linear infinite; }
+  .animate-marquee-reverse { animation: marquee-reverse 44s linear infinite; }
+
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer utilities {
+  @keyframes brand-marquee-infinite {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+  .brand-marquee-track {
+    animation: brand-marquee-infinite 48s linear infinite;
+  }
+  .brand-marquee-mask {
+    mask-image: linear-gradient(90deg, transparent, black 7%, black 93%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 7%, black 93%, transparent);
+  }
+}
+
+/* Ajustes finales solicitados: fondo hero estable, texto rotativo como el index anterior,
+   carrusel infinito real y scroll reveal más natural. */
+@keyframes heroWordCycle {
+  0% { opacity: 0; transform: translateY(-28px); }
+  8%, 24% { opacity: 1; transform: translateY(0); }
+  33%, 100% { opacity: 0; transform: translateY(40px); }
+}
+.hero-word-rotator .hero-word {
+  position: absolute;
+  inset: 0 auto auto 0;
+  display: block;
+  white-space: nowrap;
+  opacity: 0;
+  color: hsl(var(--orange));
+  animation: heroWordCycle 7.5s infinite cubic-bezier(.22,.61,.36,1) both;
+  will-change: transform, opacity;
+}
+
+@keyframes brandMarqueeInfinite {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+.brand-marquee-track {
+  animation-name: brandMarqueeInfinite !important;
+  animation-duration: 24s !important;
+  animation-timing-function: linear !important;
+  animation-iteration-count: infinite !important;
+}
+.brand-marquee-mask {
+  mask-image: linear-gradient(90deg, transparent, black 7%, black 93%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 7%, black 93%, transparent);
+}
+.brand-strip img {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+@media (max-width: 640px) {
+  .brand-marquee-track { animation-duration: 18s !important; }
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-word-rotator .hero-word,
+  .brand-marquee-track {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* Ajustes de navegación tipo marketplace */
+@layer base {
+  html {
+    scroll-padding-top: 96px;
+  }
+}
+
+@layer utilities {
+  .section-anchor {
+    scroll-margin-top: 96px;
+  }
+}
+
+
+/* Ajustes finales: secciones parejas, botones más claros y toast de carrito más visible */
+@layer utilities {
+  .landing-section {
+    display: flex;
+    align-items: center;
+  }
+
+  .landing-section:not(#inicio) {
+    min-height: auto;
+  }
+
+  #inicio.landing-section {
+    min-height: calc(100svh - 80px);
+  }
+
+  .landing-section > div:not(.absolute) {
+    width: 100%;
+  }
+}
+
+.cart-success-toast {
+  min-width: min(520px, calc(100vw - 32px)) !important;
+  padding: 18px 20px !important;
+  border-radius: 18px !important;
+  font-weight: 850 !important;
+  font-size: 15px !important;
+  box-shadow: 0 18px 52px rgba(6, 22, 79, 0.22) !important;
+}
+
+.cart-success-toast [data-icon],
+.cart-success-toast svg {
+  width: 28px !important;
+  height: 28px !important;
+  color: hsl(var(--whatsapp)) !important;
+}
+
+
+/* Ajustes de contraste y movimiento móvil */
+@layer utilities {
+  .text-orange-on-light { color: hsl(14 94% 40%); }
+  .bg-white .text-orange,
+  .bg-card .text-orange { color: hsl(14 94% 40%); }
+}
+
+@media (max-width: 640px) {
+  .group:hover img,
+  .group:hover .transition-transform { transform: none !important; }
+  .shadow-orange { box-shadow: 0 10px 26px -12px hsl(14 100% 54% / 0.32); }
+  .animate-float-slow,
+  .brand-marquee-track { animation-duration: 32s !important; }
+}
