@@ -35,43 +35,36 @@ jobs:
       - name: Compilar proyecto
         run: npm run build
 
-      - name: Buscar carpeta correcta para GitHub Pages
+      - name: Preparar archivos para GitHub Pages
+        shell: bash
         run: |
           rm -rf pages-dist
 
           echo "Buscando index.html generado por el build..."
-          find . -name "index.html" -type f
 
-          if [ -f "dist/index.html" ]; then
-            echo "Usando dist/"
-            cp -R dist pages-dist
+          INDEX_FILE=$(find dist .output .vinxi build -name "index.html" -type f 2>/dev/null | head -n 1)
 
-          elif [ -f ".output/public/index.html" ]; then
-            echo "Usando .output/public/"
-            cp -R .output/public pages-dist
-
-          elif [ -f "dist/client/index.html" ]; then
-            echo "Usando dist/client/"
-            cp -R dist/client pages-dist
-
-          elif [ -f "build/client/index.html" ]; then
-            echo "Usando build/client/"
-            cp -R build/client pages-dist
-
-          elif [ -f "build/index.html" ]; then
-            echo "Usando build/"
-            cp -R build pages-dist
-
-          else
-            echo "ERROR: No se encontró index.html en una carpeta válida."
-            echo "Estructura generada:"
-            find . -maxdepth 4 -type d
+          if [ -z "$INDEX_FILE" ]; then
+            echo "ERROR: No se encontró ningún index.html generado."
+            echo "Archivos index.html encontrados en todo el proyecto:"
+            find . -path "./node_modules" -prune -o -name "index.html" -type f -print
             exit 1
           fi
 
+          SITE_DIR=$(dirname "$INDEX_FILE")
+
+          echo "index.html encontrado en:"
+          echo "$INDEX_FILE"
+
+          echo "Carpeta que se publicará:"
+          echo "$SITE_DIR"
+
+          mkdir -p pages-dist
+          cp -R "$SITE_DIR"/. pages-dist/
+
           cp pages-dist/index.html pages-dist/404.html
 
-          echo "Contenido final que se subirá a GitHub Pages:"
+          echo "Contenido final de pages-dist:"
           ls -la pages-dist
 
       - name: Subir archivos compilados
