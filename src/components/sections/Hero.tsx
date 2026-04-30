@@ -62,8 +62,8 @@ export function Hero() {
       <div className="absolute bottom-0 left-0 right-0 z-20 border-t border-white/10 bg-navy-deep/62 backdrop-blur-md">
         <div className="mx-auto max-w-[1360px] px-5 grid grid-cols-2 sm:grid-cols-4">
           {[
-            { value: "30+", label: "Años en Concepción" },
-            { value: "8.000+", label: "Productos" },
+            { value: "20+", label: "Años en Concepción" },
+            { value: "14.000+", label: "Productos" },
             { value: "120+", label: "Marcas" },
             { value: "4.3★", label: "Reseñas Google" },
           ].map((p, i) => (

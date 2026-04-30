@@ -1,26 +1,28 @@
-# Dependencias
+# Dependencies
 node_modules/
 
-# Builds / salidas generadas
+# Build output and framework caches
 dist/
-.output/
-.vinxi/
 .tanstack/
-.wrangler/
+.output/
+.vercel/
 
-# Variables locales / secretos
+# Local environment files
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
 
 # Logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Sistema / editor
+# Local verification screenshots
+header-*.png
+category-*.png
+
+# OS/editor files
 .DS_Store
 Thumbs.db
-.vscode/
-.idea/

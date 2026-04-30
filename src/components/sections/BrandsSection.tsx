@@ -1,9 +1,6 @@
 import { BRANDS, type Brand } from "@/lib/products";
 import { Reveal } from "@/components/motion/Reveal";
-import { ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
-
-const cleanUrl = (url: string) => url.replace(/^https?:\/\/(www\.)?/i, "").replace(/\/$/, "");
 
 export function BrandsSection() {
   return (
@@ -83,10 +80,6 @@ function BrandStrip({ brands, ariaHidden = false }: { brands: Brand[]; ariaHidde
             loading="lazy"
             className={`relative z-[1] h-[78px] w-[148px] object-contain object-center opacity-85 transition-all duration-500 ease-out group-hover:opacity-100 group-hover:grayscale-0 sm:h-[110px] sm:w-[220px] sm:opacity-40 sm:grayscale ${brand.imgClass || 'group-hover:scale-[1.08]'}`}
           />
-          <span className="absolute inset-x-3 bottom-3 z-[2] hidden translate-y-3 items-center justify-center gap-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 px-3 py-1.5 text-[10px] font-black tracking-wide text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 sm:flex">
-            <span className="truncate">{cleanUrl(brand.url)}</span>
-            <ExternalLink className="h-3 w-3 shrink-0" />
-          </span>
         </a>
       ))}
     </div>

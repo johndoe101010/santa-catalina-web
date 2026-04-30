@@ -10,7 +10,7 @@ import { ContactSection } from "@/components/sections/ContactSection";
 import { absoluteUrl, canonicalUrl, SITE } from "@/lib/site";
 import heroFachadaUrl from "@/assets/hero-fachada.jpg";
 
-const homeTitle = "Santa Catalina — Ferretería en Concepción, Paraguay";
+const homeTitle = "Santa Catalina S.A.";
 const homeDescription =
   "Más de 30 años abasteciendo Concepción con herramientas, construcción, hogar, campo, electricidad, plomería, pinturas y atención directa por WhatsApp.";
 const homeImage = absoluteUrl(heroFachadaUrl);
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/")({
       { name: "description", content: homeDescription },
       { name: "robots", content: "index, follow, max-image-preview:large" },
       { property: "og:title", content: homeTitle },
-      { property: "og:description", content: "Tu ferretería de confianza en Concepción. Más de 8.000 productos en stock." },
+      { property: "og:description", content: "Tu ferretería de confianza en Concepción. Más de 14.000 productos en stock." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: canonicalUrl("/") },
       { property: "og:site_name", content: SITE.name },

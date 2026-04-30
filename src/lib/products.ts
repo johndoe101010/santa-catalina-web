@@ -30,12 +30,12 @@ import brandSyopar from "@/assets/brands/syopar.png";
 import brandTotal from "@/assets/brands/total.png";
 import brandTruper from "@/assets/brands/truper.png";
 
-import reviewCesar from "@/assets/reviews/cesar-centurion.png";
-import reviewFrancesco from "@/assets/reviews/francesco-russo.png";
-import reviewGustavo from "@/assets/reviews/gustavo-maciel.png";
-import reviewJose from "@/assets/reviews/jose-benitez.png";
-import reviewMilciades from "@/assets/reviews/milciades-coronel-marin.png";
-import reviewVictor from "@/assets/reviews/victor-ibanez.png";
+import reviewCesar from "@/assets/reviews/cesar-centurion.webp";
+import reviewFrancesco from "@/assets/reviews/francesco-russo.webp";
+import reviewGustavo from "@/assets/reviews/gustavo-maciel.webp";
+import reviewJose from "@/assets/reviews/jose-benitez.webp";
+import reviewMilciades from "@/assets/reviews/milciades-coronel-marin.webp";
+import reviewVictor from "@/assets/reviews/victor-ibanez.webp";
 
 export type Category = { slug: string; name: string; blurb: string; image: string; count: number; };
 export type Product = { slug: string; name: string; category: string; categorySlug: string; price: number; oldPrice?: number; image: string; brand: string; stock: "disponible" | "ultimas" | "consultar"; featured?: boolean; description: string; features: string[]; };

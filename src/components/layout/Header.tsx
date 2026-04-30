@@ -533,12 +533,12 @@ export function Header() {
 
   return (
     <header ref={searchShellRef} className="sticky top-0 z-50 border-b border-border bg-background/96 shadow-soft [overflow-anchor:none]">
-      <div className="mx-auto grid min-h-20 w-full max-w-[1360px] grid-cols-[auto_1fr_auto] items-center gap-3 px-5 lg:grid-cols-[360px_minmax(280px,540px)_260px] lg:gap-4">
-        <div className="flex min-w-0 items-center gap-3">
+      <div className="mx-auto grid min-h-20 w-full max-w-[1360px] grid-cols-[minmax(0,1fr)_auto] items-center gap-2 px-3 sm:gap-3 sm:px-5 md:grid-cols-[auto_1fr_auto] lg:grid-cols-[420px_minmax(220px,1fr)_auto] lg:gap-4 xl:grid-cols-[470px_minmax(280px,540px)_260px]">
+        <div className="flex min-w-0 items-center gap-1.5 sm:gap-3">
           <button
             ref={menuButtonRef}
             onClick={() => setMenuOpen((value) => !value)}
-            className="inline-flex h-11 shrink-0 items-center gap-2 rounded-full border border-border bg-card px-4 text-sm font-black text-foreground shadow-soft transition-colors hover:border-orange hover:text-orange"
+            className="inline-flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full border border-border bg-card p-0 text-sm font-black text-foreground shadow-soft transition-colors hover:border-orange hover:text-orange min-[430px]:h-10 min-[430px]:w-10 sm:h-11 sm:w-auto sm:px-4"
             aria-expanded={menuOpen}
             aria-label="Abrir menú de categorías"
           >
@@ -549,14 +549,14 @@ export function Header() {
           <Link
             to="/"
             onClick={handleHomeNav}
-            className="flex min-w-0 items-center gap-3 group"
+            className="flex min-w-0 items-center gap-1 group min-[430px]:gap-2 sm:gap-3"
           >
-            <div className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-2xl bg-transparent p-0 transition-transform group-hover:-rotate-3">
+            <div className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-2xl bg-transparent p-0 transition-transform group-hover:-rotate-3 min-[430px]:h-12 min-[430px]:w-12 sm:h-14 sm:w-14">
               <img src={logoSantaCatalina} alt="Santa Catalina" className="h-full w-full object-contain" />
             </div>
-            <div className="hidden min-w-0 flex-1 sm:block leading-tight">
-              <div className="font-display whitespace-nowrap text-base font-extrabold tracking-tight text-foreground">{SITE.name}</div>
-              <div className="whitespace-nowrap text-[10px] md:text-[11px] font-black text-orange">{SITE.tagline}</div>
+            <div className="min-w-0 max-w-[190px] flex-1 leading-tight min-[390px]:max-w-[220px] sm:max-w-none">
+              <div className="font-display whitespace-nowrap text-[15px] font-extrabold tracking-tight text-foreground sm:text-lg">{SITE.name}</div>
+              <div className="whitespace-nowrap text-[10px] font-black leading-none text-orange sm:text-[11px] md:text-xs">{SITE.tagline}</div>
             </div>
           </Link>
         </div>
@@ -641,11 +641,11 @@ export function Header() {
           </AnimatePresence>
         </div>
 
-        <div className="flex justify-end gap-2">
+        <div className="flex shrink-0 justify-end gap-1.5 min-[430px]:gap-2">
           <Link
             to="/"
             onClick={handleHomeNav}
-            className="inline-flex h-11 items-center gap-2 rounded-full border border-border bg-card px-4 font-black text-foreground shadow-soft transition-colors hover:border-orange hover:text-orange"
+            className="inline-flex h-9 w-9 items-center justify-center gap-2 rounded-full border border-border bg-card p-0 font-black text-foreground shadow-soft transition-colors hover:border-orange hover:text-orange min-[430px]:h-10 min-[430px]:w-10 sm:h-11 sm:w-auto sm:px-4"
             aria-label="Volver al inicio"
           >
             <Home className="h-4 w-4" />
@@ -654,7 +654,7 @@ export function Header() {
 
           <Link
             to="/carrito"
-            className="relative inline-flex h-11 items-center gap-2 rounded-full border border-border bg-card px-4 font-black text-foreground shadow-soft transition-colors hover:border-orange hover:text-orange"
+            className="relative inline-flex h-9 w-9 items-center justify-center gap-2 rounded-full border border-border bg-card p-0 font-black text-foreground shadow-soft transition-colors hover:border-orange hover:text-orange min-[430px]:h-10 min-[430px]:w-10 sm:h-11 sm:w-auto sm:px-4"
             aria-label="Carrito"
           >
             <ShoppingCart className="h-4 w-4" />

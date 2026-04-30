@@ -3,7 +3,7 @@ import { CompanySection } from "@/components/sections/CompanySection";
 import { BrandsSection } from "@/components/sections/BrandsSection";
 import { ReviewsSection } from "@/components/sections/ReviewsSection";
 import { absoluteUrl, canonicalUrl, SITE } from "@/lib/site";
-import empresaImageUrl from "@/assets/empresa-interior.jpg";
+import empresaImageUrl from "@/assets/empresa-interior.png";
 
 export const Route = createFileRoute("/empresa")({
   head: () => ({

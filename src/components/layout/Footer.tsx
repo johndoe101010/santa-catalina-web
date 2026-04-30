@@ -83,7 +83,7 @@ export function Footer() {
       <div className="relative border-t border-cream/10">
         <div className="mx-auto max-w-[1360px] px-5 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-cream/50">
           <span>© {new Date().getFullYear()} {SITE.name}. Todos los derechos reservados.</span>
-          <span>Hecho en Concepción, Paraguay.</span>
+          <span>Concepción, Paraguay.</span>
         </div>
       </div>
     </footer>

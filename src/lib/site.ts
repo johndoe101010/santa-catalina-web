@@ -2,7 +2,7 @@
 export const SITE = {
   name: "Santa Catalina",
   legalName: "Santa Catalina S.A.",
-  url: "https://santa-catalina-premium-mart.lovable.app",
+  url: "https://santacatalina.py",
   locale: "es_PY",
   tagline: "Logramos tu mejor manera de vivir",
   description:
@@ -24,8 +24,8 @@ export const SITE = {
     facebook: "https://www.facebook.com/santa.catalinapy?locale=es_LA",
   },
   proof: [
-    { value: "30+", label: "Años en Concepción" },
-    { value: "8.000+", label: "Productos" },
+    { value: "20+", label: "Años en Concepción" },
+    { value: "14.000+", label: "Productos" },
     { value: "120+", label: "Marcas" },
     { value: "4.3★", label: "Reseñas Google" },
   ],

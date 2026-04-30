@@ -18,7 +18,7 @@ npm run build
 ## Notas comerciales
 
 - Los precios del catálogo son demo. En la web se muestra el aviso: "Precio y disponibilidad sujetos a confirmación por WhatsApp."
-- Cuando se confirme la venta, cambiar el dominio demo de Lovable por el dominio real en `src/lib/site.ts`, `public/robots.txt` y `public/sitemap.xml`.
+- Cuando se confirme el dominio final, actualizarlo en `src/lib/site.ts`, `public/robots.txt` y `public/sitemap.xml`.
 - Las páginas SEO por categoría están creadas en `/categoria/:slug`.
 - Las reseñas enlazan a los comentarios reales de Google Maps proporcionados.
 

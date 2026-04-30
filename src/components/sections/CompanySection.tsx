@@ -2,13 +2,13 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { CountUp } from "@/components/motion/CountUp";
 import { Reveal } from "@/components/motion/Reveal";
-import interior from "@/assets/empresa-interior.jpg";
+import interior from "@/assets/empresa-interior.png";
 
 const STATS = [
-  { value: 30, suffix: "+", label: "Años de experiencia" },
-  { value: 8000, suffix: "+", label: "Productos en stock" },
+  { value: 20, suffix: "+", label: "Años de experiencia" },
+  { value: 14000, suffix: "+", label: "Productos en stock" },
   { value: 120, suffix: "+", label: "Marcas trabajadas" },
-  { value: 12000, suffix: "+", label: "Clientes felices" },
+  { value: 12000, suffix: "+", label: "Clientes" },
 ];
 
 export function CompanySection() {
