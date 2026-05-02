@@ -22,7 +22,11 @@ export const Route = createFileRoute("/")({
       { name: "description", content: homeDescription },
       { name: "robots", content: "index, follow, max-image-preview:large" },
       { property: "og:title", content: homeTitle },
-      { property: "og:description", content: "Tu ferretería de confianza en Concepción. Más de 14.000 productos en stock." },
+      {
+        property: "og:description",
+        content:
+          "Tu ferretería de confianza en Concepción. Más de 14.000 productos en stock.",
+      },
       { property: "og:type", content: "website" },
       { property: "og:url", content: canonicalUrl("/") },
       { property: "og:site_name", content: SITE.name },

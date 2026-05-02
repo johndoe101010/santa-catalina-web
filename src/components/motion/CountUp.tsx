@@ -35,7 +35,8 @@ export function CountUp({
     return () => cancelAnimationFrame(raf);
   }, [inView, to, duration]);
 
-  const fmt = decimals > 0 ? n.toFixed(decimals) : Math.round(n).toLocaleString("es-PY");
+  const fmt =
+    decimals > 0 ? n.toFixed(decimals) : Math.round(n).toLocaleString("es-PY");
   return (
     <span ref={ref} className={className}>
       {prefix}

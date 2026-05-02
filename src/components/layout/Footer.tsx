@@ -1,91 +1,185 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Facebook, MapPin, Phone, Mail } from "lucide-react";
+import { Clock, Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
+import type { ReactNode } from "react";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { CATEGORIES } from "@/lib/products";
 import { SITE, waUrl } from "@/lib/site";
 import logoSantaCatalina from "@/assets/santa-catalina-logo-transparent.png";
-import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 
 export function Footer() {
   return (
-    <footer className="relative mt-24 bg-gradient-navy text-cream/90 overflow-hidden">
-      <div className="relative mx-auto max-w-[1360px] px-5 py-20 grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+    <footer className="bg-gradient-navy text-cream/90">
+      <div className="mx-auto grid max-w-[1536px] gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[1.25fr_0.75fr_1fr_1.25fr] lg:px-10">
         <div>
-          <div className="flex items-center gap-3 mb-5">
-            <div className="grid h-16 w-16 place-items-center overflow-hidden rounded-2xl bg-white p-1.5 shadow-[0_14px_34px_rgba(0,0,0,.24)] ring-1 ring-white/60">
-              <img src={logoSantaCatalina} alt="Santa Catalina" className="h-full w-full object-contain" />
-            </div>
-            <div>
-              <div className="font-display font-extrabold text-lg text-cream">{SITE.name}</div>
-              <div className="text-xs font-black text-orange">{SITE.tagline}</div>
-            </div>
+          <div className="mb-5 flex items-center gap-4">
+            <span className="grid h-20 w-20 place-items-center overflow-hidden rounded-full bg-white p-1 shadow-strong">
+              <img
+                src={logoSantaCatalina}
+                alt="Santa Catalina"
+                className="h-full w-full object-contain"
+              />
+            </span>
+            <span>
+              <span className="block font-display text-2xl font-black text-white">
+                {SITE.legalName}
+              </span>
+              <span className="block font-display text-sm font-black text-orange">
+                {SITE.tagline}
+              </span>
+            </span>
           </div>
-          <p className="text-sm leading-relaxed text-cream/70 max-w-sm">
-            Más de 30 años acompañando a familias, constructores y productores de Concepción con todo lo
-            necesario para construir, reparar y equipar.
+          <p className="max-w-sm text-sm leading-relaxed text-cream/72">
+            Más de 30 años acompañando a familias, constructores y productores
+            de Concepción con todo lo necesario para construir, reparar y
+            equipar.
           </p>
-          <div className="flex gap-3 mt-6">
-            <a href={SITE.social.instagram} target="_blank" rel="noopener" className="grid h-10 w-10 place-items-center rounded-full bg-cream/10 hover:bg-orange transition-colors" aria-label="Instagram">
-              <Instagram className="h-4 w-4" />
+          <div className="mt-7 flex gap-3">
+            <a
+              href={SITE.social.facebook}
+              target="_blank"
+              rel="noopener"
+              className="grid h-11 w-11 place-items-center rounded-full border border-white/18 bg-white/8 transition-colors hover:bg-orange"
+              aria-label="Facebook"
+            >
+              <Facebook className="h-5 w-5" />
             </a>
-            <a href={SITE.social.facebook} target="_blank" rel="noopener" className="grid h-10 w-10 place-items-center rounded-full bg-cream/10 hover:bg-orange transition-colors" aria-label="Facebook">
-              <Facebook className="h-4 w-4" />
+            <a
+              href={SITE.social.instagram}
+              target="_blank"
+              rel="noopener"
+              className="grid h-11 w-11 place-items-center rounded-full border border-white/18 bg-white/8 transition-colors hover:bg-orange"
+              aria-label="Instagram"
+            >
+              <Instagram className="h-5 w-5" />
+            </a>
+            <a
+              href={waUrl()}
+              target="_blank"
+              rel="noopener"
+              className="grid h-11 w-11 place-items-center rounded-full border border-white/18 bg-white/8 transition-colors hover:bg-whatsapp hover:text-navy-deep"
+              aria-label="WhatsApp"
+            >
+              <WhatsAppIcon className="h-5 w-5" />
             </a>
           </div>
         </div>
 
-        <div>
-          <h4 className="font-display font-bold text-cream mb-4 text-sm uppercase tracking-wider">Navegar</h4>
-          <ul className="space-y-2.5 text-sm text-cream/70">
-            <li><a href="/#inicio" className="hover:text-orange transition-colors">Inicio</a></li>
-            <li><Link to="/catalogo" className="hover:text-orange transition-colors">Catálogo</Link></li>
-            <li><a href="/#empresa" className="hover:text-orange transition-colors">Empresa</a></li>
-            <li><a href="/#marcas" className="hover:text-orange transition-colors">Marcas</a></li>
-            <li><a href="/#faq" className="hover:text-orange transition-colors">FAQ</a></li>
-            <li><a href="/#contacto" className="hover:text-orange transition-colors">Contacto</a></li>
-            <li><Link to="/carrito" className="hover:text-orange transition-colors">Mi carrito</Link></li>
-          </ul>
-        </div>
+        <FooterColumn title="Navegación">
+          <li>
+            <a href="/#inicio" className="hover:text-orange">
+              Inicio
+            </a>
+          </li>
+          <li>
+            <Link to="/catalogo" className="hover:text-orange">
+              Catálogo
+            </Link>
+          </li>
+          <li>
+            <a href="/#empresa" className="hover:text-orange">
+              Empresa
+            </a>
+          </li>
+          <li>
+            <a href="/#marcas" className="hover:text-orange">
+              Marcas
+            </a>
+          </li>
+          <li>
+            <a href="/#faq" className="hover:text-orange">
+              FAQ
+            </a>
+          </li>
+          <li>
+            <a href="/#contacto" className="hover:text-orange">
+              Contacto
+            </a>
+          </li>
+          <li>
+            <Link to="/carrito" className="hover:text-orange">
+              Mi carrito
+            </Link>
+          </li>
+        </FooterColumn>
+
+        <FooterColumn title="Categorías">
+          {CATEGORIES.slice(0, 9).map((category) => (
+            <li key={category.slug}>
+              <Link
+                to="/categoria/$slug"
+                params={{ slug: category.slug }}
+                className="hover:text-orange"
+              >
+                {category.name}
+              </Link>
+            </li>
+          ))}
+        </FooterColumn>
 
         <div>
-          <h4 className="font-display font-bold text-cream mb-4 text-sm uppercase tracking-wider">Horarios</h4>
-          <ul className="space-y-2.5 text-sm text-cream/70">
-            {SITE.hours.map((h) => (
-              <li key={h.day} className="flex items-center justify-between gap-3">
-                <span>{h.day}</span>
-                <span className="text-cream/90 font-medium">{h.time}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-display font-bold text-cream mb-4 text-sm uppercase tracking-wider">Contacto</h4>
-          <ul className="space-y-3 text-sm text-cream/70">
+          <h4 className="mb-4 font-display text-sm font-black uppercase tracking-[0.12em] text-white">
+            Contacto
+          </h4>
+          <ul className="space-y-4 text-sm text-cream/72">
             <li className="flex items-start gap-3">
-              <MapPin className="h-4 w-4 mt-0.5 text-orange shrink-0" />
+              <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-orange" />
               <span>{SITE.address}</span>
             </li>
             <li className="flex items-center gap-3">
-              <WhatsAppIcon className="h-4 w-4 text-orange shrink-0" />
-              <a href={waUrl()} className="hover:text-orange transition-colors">{SITE.phone}</a>
+              <Phone className="h-5 w-5 shrink-0 text-orange" />
+              <a
+                href={`tel:${SITE.phone.replace(/\s/g, "")}`}
+                className="hover:text-orange"
+              >
+                {SITE.phone}
+              </a>
             </li>
             <li className="flex items-center gap-3">
-              <Phone className="h-4 w-4 text-orange shrink-0" />
-              <a href={`tel:${SITE.phone.replace(/\s/g, "")}`} className="hover:text-orange transition-colors">Llamar</a>
+              <Mail className="h-5 w-5 shrink-0 text-orange" />
+              <a href={`mailto:${SITE.email}`} className="hover:text-orange">
+                {SITE.email}
+              </a>
             </li>
-            <li className="flex items-center gap-3">
-              <Mail className="h-4 w-4 text-orange shrink-0" />
-              <a href={`mailto:${SITE.email}`} className="hover:text-orange transition-colors">{SITE.email}</a>
+            <li className="flex items-start gap-3">
+              <Clock className="mt-0.5 h-5 w-5 shrink-0 text-orange" />
+              <span>
+                Lunes a Viernes: 07:00 - 18:00
+                <br />
+                Sábado: 07:00 - 16:00
+                <br />
+                Domingo: Cerrado
+              </span>
             </li>
           </ul>
         </div>
       </div>
 
-      <div className="relative border-t border-cream/10">
-        <div className="mx-auto max-w-[1360px] px-5 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-cream/50">
-          <span>© {new Date().getFullYear()} {SITE.name}. Todos los derechos reservados.</span>
-          <span>Concepción, Paraguay.</span>
+      <div className="border-t border-white/12">
+        <div className="mx-auto flex max-w-[1536px] flex-col gap-2 px-5 py-6 text-xs text-cream/58 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
+          <span>
+            © {new Date().getFullYear()} {SITE.legalName}. Todos los derechos
+            reservados.
+          </span>
+          <span>Concepción, Paraguay</span>
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterColumn({
+  title,
+  children,
+}: {
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <div>
+      <h4 className="mb-4 font-display text-sm font-black uppercase tracking-[0.12em] text-white">
+        {title}
+      </h4>
+      <ul className="space-y-2.5 text-sm text-cream/72">{children}</ul>
+    </div>
   );
 }

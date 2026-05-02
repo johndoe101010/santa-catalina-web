@@ -1,14 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { useCart, buildWhatsAppMessage } from "@/lib/cart";
 import { PRODUCTS, formatGs } from "@/lib/products";
-import { canonicalUrl, waUrl } from "@/lib/site";
-import { Minus, Plus, Trash2, ShoppingCart } from "lucide-react";
+import { canonicalUrl, SITE, waUrl } from "@/lib/site";
+import { Minus, Plus, ShoppingCart, Trash2 } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 
 export const Route = createFileRoute("/carrito")({
   head: () => ({
     meta: [
-      { title: "Mi carrito — Santa Catalina" },
+      { title: "Carrito - Santa Catalina" },
       { name: "robots", content: "noindex, nofollow" },
     ],
     links: [{ rel: "canonical", href: canonicalUrl("/carrito") }],
@@ -18,75 +19,273 @@ export const Route = createFileRoute("/carrito")({
 
 function Cart() {
   const { items, setQty, remove, clear } = useCart();
+  const [delivery, setDelivery] = useState("Retiro en tienda");
+  const [customerName, setCustomerName] = useState("");
+  const [customerPhone, setCustomerPhone] = useState("");
+  const [notes, setNotes] = useState("");
   const detailed = items
-    .map((i) => ({ product: PRODUCTS.find((p) => p.slug === i.slug)!, qty: i.qty }))
-    .filter((x) => x.product);
-  const total = detailed.reduce((s, x) => s + x.product.price * x.qty, 0);
+    .map((item) => ({
+      product: PRODUCTS.find((product) => product.slug === item.slug),
+      qty: item.qty,
+    }))
+    .filter(
+      (item): item is { product: (typeof PRODUCTS)[number]; qty: number } =>
+        Boolean(item.product),
+    );
+  const total = detailed.reduce(
+    (sum, item) => sum + item.product.price * item.qty,
+    0,
+  );
+  const units = detailed.reduce((sum, item) => sum + item.qty, 0);
+  const whatsappMessage = [
+    buildWhatsAppMessage(detailed, total),
+    "",
+    "*Datos de contacto*",
+    `Nombre: ${customerName.trim() || "A completar"}`,
+    `Teléfono: ${customerPhone.trim() || "A completar"}`,
+    `Entrega: ${delivery}`,
+    `Observaciones: ${notes.trim() || "Sin observaciones"}`,
+  ]
+    .filter(Boolean)
+    .join("\n");
 
   return (
-    <div className="pt-12 pb-24 min-h-[60vh]">
-      <div className="mx-auto max-w-[1100px] px-5">
-        <h1 className="font-display text-4xl sm:text-5xl font-black mb-10">Mi carrito</h1>
+    <div className="min-h-[60vh] pb-24">
+      <section className="border-b border-border bg-cream py-10 sm:py-14">
+        <div className="mx-auto max-w-[1360px] px-5">
+          <span className="text-xs font-black uppercase tracking-[0.24em] text-orange">
+            Tu pedido
+          </span>
+          <div className="mt-3 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+            <div>
+              <h1 className="font-display text-4xl font-black leading-none text-foreground sm:text-6xl">
+                Carrito
+              </h1>
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                Revisá cantidades, coordiná retiro o envío y finalizá el pedido
+                por WhatsApp con el local.
+              </p>
+            </div>
+            <Link
+              to="/catalogo"
+              className="inline-flex h-12 items-center justify-center border border-navy bg-navy px-5 text-sm font-black text-white transition-colors hover:border-orange hover:bg-orange"
+            >
+              Seguir comprando
+            </Link>
+          </div>
+        </div>
+      </section>
 
+      <div className="mx-auto max-w-[1360px] px-5 py-10">
         {detailed.length === 0 ? (
-          <div className="text-center py-20 rounded-3xl bg-card border border-border">
-            <ShoppingCart className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-            <p className="text-muted-foreground mb-6">Tu carrito está vacío.</p>
-            <Link to="/catalogo" className="inline-flex items-center gap-2 rounded-full bg-gradient-orange text-white font-bold px-6 py-3 shadow-orange">
+          <div className="border border-border bg-card p-12 text-center shadow-soft">
+            <ShoppingCart className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
+            <p className="mb-6 text-muted-foreground">Tu carrito está vacío.</p>
+            <Link
+              to="/catalogo"
+              className="inline-flex h-12 items-center justify-center border border-orange bg-orange px-6 text-sm font-black text-white shadow-orange transition-colors hover:border-navy hover:bg-navy"
+            >
               Explorar catálogo
             </Link>
           </div>
         ) : (
-          <div className="grid lg:grid-cols-[1.6fr_1fr] gap-8">
-            <div className="space-y-3">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_390px]">
+            <div className="border border-border bg-card shadow-soft">
+              <div className="grid grid-cols-[1fr_120px_140px_120px_48px] border-b border-border bg-secondary px-5 py-4 text-xs font-black uppercase tracking-[0.16em] text-muted-foreground max-lg:hidden">
+                <span>Producto</span>
+                <span>Precio</span>
+                <span>Cantidad</span>
+                <span>Subtotal</span>
+                <span />
+              </div>
+
               {detailed.map(({ product, qty }) => (
-                <div key={product.slug} className="flex gap-4 p-4 rounded-2xl bg-card border border-border shadow-soft transition-shadow hover:shadow-strong">
-                  <Link to="/producto/$slug" params={{ slug: product.slug }} className="grid h-24 w-24 shrink-0 place-items-center bg-white p-0 transition-transform hover:scale-[1.02]">
-                    <img src={product.image} alt={product.name} className="h-full w-full object-contain bg-white" />
-                  </Link>
-                  <Link to="/producto/$slug" params={{ slug: product.slug }} className="flex-1 min-w-0 group">
-                    <div className="text-[10px] uppercase tracking-widest text-orange font-bold">{product.brand}</div>
-                    <div className="font-display font-bold text-sm leading-tight mb-2 group-hover:text-orange transition-colors">{product.name}</div>
-                    <div className="font-display font-black">{formatGs(product.price * qty)}</div>
-                    <div className="mt-2 text-[11px] font-bold text-muted-foreground group-hover:text-orange">Ver producto</div>
-                  </Link>
-                  <div className="flex flex-col items-end gap-2">
-                    <button onClick={() => remove(product.slug)} className="text-muted-foreground hover:text-destructive" aria-label={`Quitar ${product.name}`}><Trash2 className="h-4 w-4" /></button>
-                    <div className="flex items-center gap-1 rounded-full bg-secondary p-1">
-                      <button onClick={() => setQty(product.slug, qty - 1)} className="grid h-7 w-7 place-items-center rounded-full hover:bg-card" aria-label="Restar unidad"><Minus className="h-3 w-3" /></button>
-                      <span className="w-6 text-center text-sm font-bold">{qty}</span>
-                      <button onClick={() => setQty(product.slug, qty + 1)} className="grid h-7 w-7 place-items-center rounded-full hover:bg-card" aria-label="Sumar unidad"><Plus className="h-3 w-3" /></button>
+                <div
+                  key={product.slug}
+                  className="grid gap-4 border-b border-border p-4 last:border-b-0 lg:grid-cols-[1fr_120px_140px_120px_48px] lg:items-center lg:px-5"
+                >
+                  <div className="grid min-w-0 grid-cols-[92px_1fr] gap-4">
+                    <Link
+                      to="/producto/$slug"
+                      params={{ slug: product.slug }}
+                      className="grid h-24 border border-border bg-white p-2"
+                    >
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="h-full w-full object-contain"
+                      />
+                    </Link>
+                    <div className="min-w-0">
+                      <div className="text-[10px] font-black uppercase tracking-[0.18em] text-orange">
+                        {product.category}
+                      </div>
+                      <Link
+                        to="/producto/$slug"
+                        params={{ slug: product.slug }}
+                        className="font-display mt-1 block line-clamp-2 font-black leading-tight transition-colors hover:text-orange"
+                      >
+                        {product.name}
+                      </Link>
+                      <div className="mt-2 text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">
+                        {product.brand}
+                      </div>
                     </div>
                   </div>
+
+                  <div className="font-display font-black text-foreground lg:text-sm">
+                    {formatGs(product.price)}
+                  </div>
+
+                  <div className="flex h-10 w-36 border border-input bg-background">
+                    <button
+                      onClick={() => setQty(product.slug, qty - 1)}
+                      className="grid w-10 place-items-center border-r border-input hover:text-orange"
+                      aria-label="Restar unidad"
+                    >
+                      <Minus className="h-3.5 w-3.5" />
+                    </button>
+                    <span className="grid flex-1 place-items-center text-sm font-black">
+                      {qty}
+                    </span>
+                    <button
+                      onClick={() => setQty(product.slug, qty + 1)}
+                      className="grid w-10 place-items-center border-l border-input hover:text-orange"
+                      aria-label="Sumar unidad"
+                    >
+                      <Plus className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
+
+                  <div className="font-display font-black text-orange">
+                    {formatGs(product.price * qty)}
+                  </div>
+
+                  <button
+                    onClick={() => remove(product.slug)}
+                    className="grid h-10 w-10 place-items-center border border-border text-muted-foreground transition-colors hover:border-destructive hover:text-destructive"
+                    aria-label={`Quitar ${product.name}`}
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </button>
                 </div>
               ))}
-              <button
-                onClick={clear}
-                className="inline-flex items-center gap-2 rounded-full border border-destructive/30 bg-destructive/10 px-5 py-3 text-sm font-black text-destructive shadow-soft transition-all hover:-translate-y-0.5 hover:bg-destructive hover:text-white hover:shadow-strong"
-              >
-                <Trash2 className="h-4 w-4" /> Vaciar carrito
-              </button>
+
+              <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border p-4">
+                <button
+                  onClick={clear}
+                  className="inline-flex h-11 items-center gap-2 border border-destructive/30 bg-destructive/10 px-5 text-sm font-black text-destructive transition-colors hover:bg-destructive hover:text-white"
+                >
+                  <Trash2 className="h-4 w-4" /> Vaciar carrito
+                </button>
+                <Link
+                  to="/catalogo"
+                  className="text-sm font-black text-orange transition-colors hover:text-navy"
+                >
+                  Agregar más productos
+                </Link>
+              </div>
             </div>
 
-            <aside className="rounded-3xl bg-gradient-navy text-cream p-8 shadow-strong h-fit lg:sticky lg:top-28">
-              <h2 className="font-display text-2xl font-black mb-6">Resumen</h2>
-              <div className="space-y-2 text-sm pb-5 mb-5 border-b border-cream/15">
-                <div className="flex justify-between"><span className="text-cream/70">Productos</span><span>{detailed.length}</span></div>
-                <div className="flex justify-between"><span className="text-cream/70">Unidades</span><span>{detailed.reduce((s, x) => s + x.qty, 0)}</span></div>
+            <aside className="h-fit border border-border bg-card p-6 shadow-soft lg:sticky lg:top-28">
+              <h2 className="font-display text-2xl font-black text-foreground">
+                Resumen del pedido
+              </h2>
+
+              <div className="mt-6 space-y-3 border-b border-border pb-5 text-sm">
+                <div className="flex justify-between gap-4">
+                  <span className="text-muted-foreground">Productos</span>
+                  <span className="font-bold">{detailed.length}</span>
+                </div>
+                <div className="flex justify-between gap-4">
+                  <span className="text-muted-foreground">Unidades</span>
+                  <span className="font-bold">{units}</span>
+                </div>
+                <div className="flex justify-between gap-4">
+                  <span className="text-muted-foreground">Subtotal</span>
+                  <span className="font-bold">{formatGs(total)}</span>
+                </div>
               </div>
-              <div className="flex items-baseline justify-between mb-6">
-                <span className="text-cream/70">Total</span>
-                <span className="font-display text-3xl font-black">{formatGs(total)}</span>
+
+              <div className="mt-5 grid gap-3">
+                <label className="flex items-center gap-3 border border-border bg-background px-4 py-3 text-sm font-bold">
+                  <input
+                    type="radio"
+                    name="delivery"
+                    checked={delivery === "Retiro en tienda"}
+                    onChange={() => setDelivery("Retiro en tienda")}
+                    className="accent-orange"
+                  />
+                  Retiro en tienda
+                </label>
+                <label className="flex items-center gap-3 border border-border bg-background px-4 py-3 text-sm font-bold">
+                  <input
+                    type="radio"
+                    name="delivery"
+                    checked={delivery === "Coordinar envío"}
+                    onChange={() => setDelivery("Coordinar envío")}
+                    className="accent-orange"
+                  />
+                  Coordinar envío
+                </label>
               </div>
+
+              <div className="mt-5 grid gap-3">
+                <label className="grid gap-1.5 text-xs font-black uppercase tracking-[0.14em] text-muted-foreground">
+                  Nombre
+                  <input
+                    value={customerName}
+                    onChange={(event) => setCustomerName(event.target.value)}
+                    className="h-12 border border-input bg-background px-4 text-sm font-semibold normal-case tracking-normal text-foreground outline-none focus:border-orange"
+                    placeholder="Nombre y apellido"
+                  />
+                </label>
+                <label className="grid gap-1.5 text-xs font-black uppercase tracking-[0.14em] text-muted-foreground">
+                  Teléfono
+                  <input
+                    value={customerPhone}
+                    onChange={(event) => setCustomerPhone(event.target.value)}
+                    className="h-12 border border-input bg-background px-4 text-sm font-semibold normal-case tracking-normal text-foreground outline-none focus:border-orange"
+                    placeholder="0986 000 000"
+                    inputMode="tel"
+                  />
+                </label>
+                <label className="grid gap-1.5 text-xs font-black uppercase tracking-[0.14em] text-muted-foreground">
+                  Observaciones
+                  <textarea
+                    value={notes}
+                    onChange={(event) => setNotes(event.target.value)}
+                    className="min-h-24 resize-y border border-input bg-background px-4 py-3 text-sm font-semibold normal-case tracking-normal text-foreground outline-none focus:border-orange"
+                    placeholder="Ej.: necesito retirar por la tarde, confirmar stock o coordinar envío."
+                  />
+                </label>
+                <p className="rounded-md border border-border bg-secondary/60 px-4 py-3 text-xs leading-relaxed text-muted-foreground">
+                  Si tenés una promoción vigente, mencionála al enviar el pedido
+                  por WhatsApp para que el equipo la confirme.
+                </p>
+              </div>
+
+              <div className="mt-6 flex items-end justify-between border-t border-border pt-5">
+                <span className="text-sm font-bold text-muted-foreground">
+                  Total
+                </span>
+                <span className="font-display text-3xl font-black text-orange">
+                  {formatGs(total)}
+                </span>
+              </div>
+
               <a
-                href={waUrl(buildWhatsAppMessage(detailed, total))}
+                href={waUrl(whatsappMessage)}
                 target="_blank"
                 rel="noopener"
-                className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp text-navy-deep font-bold px-6 py-4 shadow-strong hover:-translate-y-0.5 transition-transform"
+                className="mt-6 inline-flex h-13 w-full items-center justify-center gap-2 border border-whatsapp bg-whatsapp px-6 text-sm font-black text-navy-deep shadow-strong transition-colors hover:border-navy hover:bg-navy hover:text-white"
               >
-                <WhatsAppIcon className="h-5 w-5" /> Confirmar por WhatsApp
+                <WhatsAppIcon className="h-5 w-5" /> Enviar pedido por WhatsApp
               </a>
-              <p className="text-[11px] text-cream/60 text-center mt-4">Coordinás pago y entrega directamente con el local.</p>
+
+              <p className="mt-4 text-center text-[11px] leading-relaxed text-muted-foreground">
+                Coordinás pago, stock y entrega directamente con {SITE.name}.
+              </p>
             </aside>
           </div>
         )}

@@ -1,4 +1,10 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import {
+  Outlet,
+  Link,
+  createRootRoute,
+  HeadContent,
+  Scripts,
+} from "@tanstack/react-router";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { StickyWhatsApp } from "@/components/layout/StickyWhatsApp";
@@ -9,7 +15,7 @@ import logoUrl from "@/assets/santa-catalina-logo.png";
 
 import appCss from "../styles.css?url";
 
-const siteTitle = "Santa Catalina S.A. — Ferretería en Concepción, Paraguay";
+const siteTitle = "Santa Catalina S.A. | Ferretería en Concepción, Paraguay";
 const siteDescription =
   "Ferretería Santa Catalina S.A. en Concepción, Paraguay. Herramientas, materiales de construcción, pinturas, electricidad, plomería, hogar y campo con atención por WhatsApp.";
 const siteImage = absoluteUrl(logoUrl);
@@ -33,7 +39,15 @@ const localBusinessJsonLd = {
   },
   areaServed: ["Concepción", "Paraguay"],
   hasMap: SITE.mapsEmbed,
-  paymentAccepted: ["Efectivo", "Transferencia bancaria", "Tarjeta de débito", "Tarjeta de crédito", "Tigo Money", "Personal Pay", "Billetera Personal"],
+  paymentAccepted: [
+    "Efectivo",
+    "Transferencia bancaria",
+    "Tarjeta de débito",
+    "Tarjeta de crédito",
+    "Tigo Money",
+    "Personal Pay",
+    "Billetera Personal",
+  ],
   currenciesAccepted: "PYG",
   priceRange: "$",
   openingHoursSpecification: [
@@ -65,14 +79,16 @@ function NotFoundComponent() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Página no encontrada</h2>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">
+          Página no encontrada
+        </h2>
         <p className="mt-2 text-sm text-muted-foreground">
           La página que buscás no existe o fue movida.
         </p>
         <div className="mt-6">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Volver al inicio
           </Link>
@@ -91,7 +107,11 @@ export const Route = createRootRoute({
       { name: "description", content: siteDescription },
       { name: "robots", content: "index, follow, max-image-preview:large" },
       { name: "author", content: SITE.legalName },
-      { name: "keywords", content: "ferretería en Concepción, Santa Catalina, herramientas, materiales de construcción, pinturas, electricidad, plomería, hogar, campo, Paraguay" },
+      {
+        name: "keywords",
+        content:
+          "ferretería en Concepción, Santa Catalina, herramientas, materiales de construcción, pinturas, electricidad, plomería, hogar, campo, Paraguay",
+      },
       { name: "theme-color", content: "#0f172a" },
       { property: "og:title", content: siteTitle },
       { property: "og:description", content: siteDescription },
@@ -100,12 +120,18 @@ export const Route = createRootRoute({
       { property: "og:site_name", content: SITE.name },
       { property: "og:locale", content: SITE.locale },
       { property: "og:image", content: siteImage },
-      { property: "og:image:alt", content: "Santa Catalina S.A. Ferretería en Concepción, Paraguay" },
+      {
+        property: "og:image:alt",
+        content: "Santa Catalina S.A. Ferretería en Concepción, Paraguay",
+      },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: siteTitle },
       { name: "twitter:description", content: siteDescription },
       { name: "twitter:image", content: siteImage },
-      { name: "twitter:image:alt", content: "Santa Catalina S.A. Ferretería en Concepción, Paraguay" },
+      {
+        name: "twitter:image:alt",
+        content: "Santa Catalina S.A. Ferretería en Concepción, Paraguay",
+      },
     ],
     links: [
       {
@@ -146,7 +172,12 @@ function RootShell({ children }: { children: React.ReactNode }) {
         <HeadContent />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd).replace(/</g, "\\u003c") }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessJsonLd).replace(
+              /</g,
+              "\\u003c",
+            ),
+          }}
         />
       </head>
       <body>

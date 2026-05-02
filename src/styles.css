@@ -1,7 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap");
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap");
 
 @custom-variant dark (&:is(.dark *));
 
@@ -12,7 +12,7 @@
  */
 
 @theme inline {
-  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: calc(var(--radius) - 6px);
@@ -53,7 +53,7 @@
 }
 
 :root {
-  --radius: 1.25rem;
+  --radius: 0.75rem;
 
   --navy: 232 86% 17%;
   --navy-deep: 232 84% 11%;
@@ -88,8 +88,17 @@
   --shadow-strong: 0 24px 70px -14px hsl(232 86% 17% / 0.22);
   --shadow-orange: 0 18px 42px -10px hsl(14 100% 54% / 0.35);
   --gradient-navy: linear-gradient(135deg, hsl(232 84% 11%), hsl(232 86% 17%));
-  --gradient-orange: linear-gradient(135deg, hsl(14 100% 54%), hsl(18 100% 58%));
-  --gradient-hero: linear-gradient(90deg, hsl(232 86% 11% / 0.96) 0%, hsl(232 86% 17% / 0.78) 42%, hsl(232 86% 17% / 0.18) 100%);
+  --gradient-orange: linear-gradient(
+    135deg,
+    hsl(14 100% 54%),
+    hsl(18 100% 58%)
+  );
+  --gradient-hero: linear-gradient(
+    90deg,
+    hsl(232 86% 11% / 0.96) 0%,
+    hsl(232 86% 17% / 0.78) 42%,
+    hsl(232 86% 17% / 0.18) 100%
+  );
 }
 
 .dark {
@@ -115,8 +124,12 @@
 }
 
 @layer base {
-  * { border-color: hsl(var(--border)); }
-  html { scroll-behavior: smooth; }
+  * {
+    border-color: hsl(var(--border));
+  }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
@@ -124,9 +137,13 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
-  h1, h2, h3, h4, h5 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     font-family: var(--font-display);
-    letter-spacing: -0.025em;
+    letter-spacing: 0;
     font-weight: 800;
   }
   ::selection {
@@ -136,36 +153,75 @@
 }
 
 @layer utilities {
-  .font-display { font-family: var(--font-display); }
-  .text-balance { text-wrap: balance; }
-  .text-pretty { text-wrap: pretty; }
-  .shadow-soft { box-shadow: var(--shadow-soft); }
-  .shadow-strong { box-shadow: var(--shadow-strong); }
-  .shadow-orange { box-shadow: var(--shadow-orange); }
-  .bg-gradient-navy { background-image: var(--gradient-navy); }
-  .bg-gradient-orange { background-image: var(--gradient-orange); }
-  .bg-gradient-hero { background-image: var(--gradient-hero); }
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  .shadow-strong {
+    box-shadow: var(--shadow-strong);
+  }
+  .shadow-orange {
+    box-shadow: var(--shadow-orange);
+  }
+  .bg-gradient-navy {
+    background-image: var(--gradient-navy);
+  }
+  .bg-gradient-orange {
+    background-image: var(--gradient-orange);
+  }
+  .bg-gradient-hero {
+    background-image: var(--gradient-hero);
+  }
 
   @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
   @keyframes marquee-reverse {
-    from { transform: translateX(-50%); }
-    to { transform: translateX(0); }
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(0);
+    }
   }
-  .animate-marquee { animation: marquee 38s linear infinite; }
-  .animate-marquee-reverse { animation: marquee-reverse 44s linear infinite; }
+  .animate-marquee {
+    animation: marquee 38s linear infinite;
+  }
+  .animate-marquee-reverse {
+    animation: marquee-reverse 44s linear infinite;
+  }
 
   @keyframes float-slow {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
   }
-  .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+  .animate-float-slow {
+    animation: float-slow 6s ease-in-out infinite;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -175,24 +231,51 @@
 
 @layer utilities {
   @keyframes brand-marquee-infinite {
-    from { transform: translate3d(0, 0, 0); }
-    to { transform: translate3d(-50%, 0, 0); }
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
   }
   .brand-marquee-track {
     animation: brand-marquee-infinite 48s linear infinite;
   }
   .brand-marquee-mask {
-    mask-image: linear-gradient(90deg, transparent, black 7%, black 93%, transparent);
-    -webkit-mask-image: linear-gradient(90deg, transparent, black 7%, black 93%, transparent);
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      black 7%,
+      black 93%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      black 7%,
+      black 93%,
+      transparent
+    );
   }
 }
 
 /* Ajustes finales solicitados: fondo hero estable, texto rotativo como el index anterior,
    carrusel infinito real y scroll reveal más natural. */
 @keyframes heroWordCycle {
-  0% { opacity: 0; transform: translateY(-28px); }
-  8%, 24% { opacity: 1; transform: translateY(0); }
-  33%, 100% { opacity: 0; transform: translateY(40px); }
+  0% {
+    opacity: 0;
+    transform: translateY(-28px);
+  }
+  8%,
+  24% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  33%,
+  100% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
 }
 .hero-word-rotator .hero-word {
   position: absolute;
@@ -201,13 +284,17 @@
   white-space: nowrap;
   opacity: 0;
   color: hsl(var(--orange));
-  animation: heroWordCycle 7.5s infinite cubic-bezier(.22,.61,.36,1) both;
+  animation: heroWordCycle 7.5s infinite cubic-bezier(0.22, 0.61, 0.36, 1) both;
   will-change: transform, opacity;
 }
 
 @keyframes brandMarqueeInfinite {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(-50%, 0, 0); }
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 .brand-marquee-track {
   animation-name: brandMarqueeInfinite !important;
@@ -216,15 +303,29 @@
   animation-iteration-count: infinite !important;
 }
 .brand-marquee-mask {
-  mask-image: linear-gradient(90deg, transparent, black 7%, black 93%, transparent);
-  -webkit-mask-image: linear-gradient(90deg, transparent, black 7%, black 93%, transparent);
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black 7%,
+    black 93%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black 7%,
+    black 93%,
+    transparent
+  );
 }
 .brand-strip img {
   transform: translateZ(0);
   backface-visibility: hidden;
 }
 @media (max-width: 640px) {
-  .brand-marquee-track { animation-duration: 18s !important; }
+  .brand-marquee-track {
+    animation-duration: 18s !important;
+  }
   html,
   body {
     overflow-x: hidden;
@@ -251,7 +352,6 @@
   }
 }
 
-
 /* Ajustes finales: secciones parejas, botones más claros y toast de carrito más visible */
 @layer utilities {
   .landing-section {
@@ -275,7 +375,7 @@
 .cart-success-toast {
   min-width: min(520px, calc(100vw - 32px)) !important;
   padding: 18px 20px !important;
-  border-radius: 18px !important;
+  border-radius: 14px !important;
   font-weight: 850 !important;
   font-size: 15px !important;
   box-shadow: 0 18px 52px rgba(6, 22, 79, 0.22) !important;
@@ -288,18 +388,27 @@
   color: hsl(var(--whatsapp)) !important;
 }
 
-
 /* Ajustes de contraste y movimiento móvil */
 @layer utilities {
-  .text-orange-on-light { color: hsl(14 94% 40%); }
+  .text-orange-on-light {
+    color: hsl(14 94% 40%);
+  }
   .bg-white .text-orange,
-  .bg-card .text-orange { color: hsl(14 94% 40%); }
+  .bg-card .text-orange {
+    color: hsl(14 94% 40%);
+  }
 }
 
 @media (max-width: 640px) {
   .group:hover img,
-  .group:hover .transition-transform { transform: none !important; }
-  .shadow-orange { box-shadow: 0 10px 26px -12px hsl(14 100% 54% / 0.32); }
+  .group:hover .transition-transform {
+    transform: none !important;
+  }
+  .shadow-orange {
+    box-shadow: 0 10px 26px -12px hsl(14 100% 54% / 0.32);
+  }
   .animate-float-slow,
-  .brand-marquee-track { animation-duration: 32s !important; }
+  .brand-marquee-track {
+    animation-duration: 32s !important;
+  }
 }

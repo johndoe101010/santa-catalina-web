@@ -76,7 +76,9 @@ export function Stagger({
       viewport={{ once: true, amount: 0.2 }}
       variants={{
         hidden: {},
-        show: { transition: { staggerChildren: stagger, delayChildren: delay } },
+        show: {
+          transition: { staggerChildren: stagger, delayChildren: delay },
+        },
       }}
     >
       {children}

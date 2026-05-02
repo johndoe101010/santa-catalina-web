@@ -45,15 +45,18 @@ export function useCart() {
     write(read().filter((x) => x.slug !== slug));
   }, []);
 
-  const setQty = useCallback((slug: string, qty: number) => {
-    if (qty <= 0) return remove(slug);
-    const cur = read();
-    const i = cur.findIndex((x) => x.slug === slug);
-    if (i >= 0) {
-      cur[i].qty = qty;
-      write(cur);
-    }
-  }, [remove]);
+  const setQty = useCallback(
+    (slug: string, qty: number) => {
+      if (qty <= 0) return remove(slug);
+      const cur = read();
+      const i = cur.findIndex((x) => x.slug === slug);
+      if (i >= 0) {
+        cur[i].qty = qty;
+        write(cur);
+      }
+    },
+    [remove],
+  );
 
   const clear = useCallback(() => write([]), []);
 
@@ -61,11 +64,17 @@ export function useCart() {
   return { items, add, remove, setQty, clear, count };
 }
 
-export function buildWhatsAppMessage(items: { product: Product; qty: number }[], total: number) {
+export function buildWhatsAppMessage(
+  items: { product: Product; qty: number }[],
+  total: number,
+) {
   const lines = [
     "*Pedido — Santa Catalina*",
     "",
-    ...items.map((i) => `• ${i.qty}× ${i.product.name} — Gs ${(i.product.price * i.qty).toLocaleString("es-PY")}`),
+    ...items.map(
+      (i) =>
+        `• ${i.qty}× ${i.product.name} — Gs ${(i.product.price * i.qty).toLocaleString("es-PY")}`,
+    ),
     "",
     `*Total: Gs ${total.toLocaleString("es-PY")}*`,
     "",

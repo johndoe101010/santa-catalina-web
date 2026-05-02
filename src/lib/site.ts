@@ -13,7 +13,7 @@ export const SITE = {
   whatsapp: "595986150330",
   email: "ventas@santacatalina.py",
   hours: [
-    { day: "Lunes a Viernes", time: "07:00 – 18:00" },
+    { day: "Lunes a Viernes", time: "07:00 - 18:00" },
     { day: "Sábado", time: "07:00 – 16:00" },
     { day: "Domingo", time: "Cerrado" },
   ],
@@ -27,7 +27,7 @@ export const SITE = {
     { value: "20+", label: "Años en Concepción" },
     { value: "14.000+", label: "Productos" },
     { value: "120+", label: "Marcas" },
-    { value: "4.3★", label: "Reseñas Google" },
+    { value: "4.3", label: "Valoración Google" },
   ],
 };
 
