@@ -14,7 +14,7 @@ export function CategoriesSection() {
             <span className="mb-4 block text-xs font-black uppercase tracking-[0.22em] text-orange">
               Categorías
             </span>
-            <h2 className="font-display text-balance text-4xl font-black leading-[0.95] text-navy-deep sm:text-6xl">
+            <h2 className="font-display text-balance text-4xl font-black leading-[1.08] text-navy-deep sm:text-6xl sm:leading-[1.02]">
               Explorá por <span className="text-orange">categoría</span>
             </h2>
           </div>

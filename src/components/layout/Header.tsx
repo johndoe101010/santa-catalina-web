@@ -2,13 +2,9 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import {
   Building2,
   ChevronRight,
-  Facebook,
   HelpCircle,
   Home,
-  Instagram,
   LayoutGrid,
-  Mail,
-  MapPin,
   Menu,
   Phone,
   Search,
@@ -157,59 +153,14 @@ export function Header() {
   return (
     <header
       ref={shellRef}
-      className="sticky top-0 z-50 border-b border-border bg-background shadow-[0_8px_28px_rgba(6,22,79,0.08)]"
+      className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background shadow-[0_8px_28px_rgba(6,22,79,0.08)]"
     >
-      <div className="hidden bg-navy-deep text-xs font-semibold text-cream/90 md:block">
-        <div className="mx-auto flex h-10 max-w-[1536px] items-center justify-between gap-6 px-6">
-          <div className="flex min-w-0 items-center gap-7">
-            <span className="inline-flex items-center gap-2">
-              <MapPin className="h-4 w-4 text-orange" />
-              {SITE.address}
-            </span>
-            <a
-              href={`tel:${SITE.phone.replace(/\s/g, "")}`}
-              className="inline-flex items-center gap-2 transition-colors hover:text-orange"
-            >
-              <Phone className="h-4 w-4 text-orange" />
-              {SITE.phone}
-            </a>
-            <a
-              href={`mailto:${SITE.email}`}
-              className="inline-flex items-center gap-2 transition-colors hover:text-orange"
-            >
-              <Mail className="h-4 w-4 text-orange" />
-              {SITE.email}
-            </a>
-          </div>
-          <div className="flex items-center gap-4">
-            <a
-              href={SITE.social.facebook}
-              target="_blank"
-              rel="noopener"
-              aria-label="Facebook"
-              className="transition-colors hover:text-orange"
-            >
-              <Facebook className="h-4 w-4" />
-            </a>
-            <a
-              href={SITE.social.instagram}
-              target="_blank"
-              rel="noopener"
-              aria-label="Instagram"
-              className="transition-colors hover:text-orange"
-            >
-              <Instagram className="h-4 w-4" />
-            </a>
-          </div>
-        </div>
-      </div>
-
       <div className="bg-card">
         <div className="mx-auto grid max-w-[1536px] grid-cols-[44px_minmax(0,1fr)_auto] items-center gap-3 px-4 py-3 sm:grid-cols-[52px_minmax(0,1fr)_auto] sm:px-6 lg:grid-cols-[430px_minmax(360px,640px)_300px] lg:gap-8 lg:py-4">
           <button
             type="button"
             onClick={() => setMenuOpen((value) => !value)}
-            className="inline-flex h-11 w-11 justify-self-start items-center justify-center rounded-lg border border-border bg-white text-navy shadow-soft transition-colors hover:border-orange hover:text-orange focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-orange/20 sm:h-12 sm:w-12 lg:col-start-1 lg:row-start-1 lg:w-auto lg:px-5"
+            className="inline-flex h-11 w-11 -ml-2 justify-self-start items-center justify-center rounded-lg border border-border bg-white text-navy shadow-soft transition-colors hover:border-orange hover:text-orange focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-orange/20 sm:h-12 sm:w-12 lg:col-start-1 lg:row-start-1 lg:ml+10 lg:w-auto lg:px-5"
             aria-expanded={menuOpen}
             aria-label="Abrir menú de categorías"
           >
@@ -227,7 +178,7 @@ export function Header() {
             to="/"
             className="group flex min-w-0 justify-self-start items-center gap-2 sm:gap-3 lg:col-start-1 lg:row-start-1 lg:ml-[112px] lg:w-fit lg:justify-start"
           >
-            <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-full bg-white p-0.5 ring-1 ring-border transition-transform group-hover:-rotate-2 sm:h-14 sm:w-14 lg:h-16 lg:w-16">
+            <span className="grid h-12 w-12 shrink-0 place-items-center bg-white transition-transform group-hover:-rotate-2 sm:h-14 sm:w-14 lg:h-16 lg:w-16">
               <img
                 src={logoSantaCatalina}
                 alt="Santa Catalina"
@@ -336,24 +287,6 @@ export function Header() {
           </div>
         </div>
       </div>
-
-      <nav
-        className="hidden bg-navy-deep text-cream lg:block"
-        aria-label="Categorías principales"
-      >
-        <div className="mx-auto flex h-14 max-w-[1536px] items-center gap-6 overflow-x-auto px-6 xl:justify-center xl:gap-8">
-          {CATEGORIES.slice(0, 10).map((category) => (
-            <Link
-              key={category.slug}
-              to="/categoria/$slug"
-              params={{ slug: category.slug }}
-              className="shrink-0 font-display text-sm font-extrabold text-cream/88 transition-colors hover:text-orange"
-            >
-              {category.name}
-            </Link>
-          ))}
-        </div>
-      </nav>
 
       {menuOpen && (
         <div className="absolute inset-x-0 top-full z-[70] border-t border-border bg-white shadow-strong">

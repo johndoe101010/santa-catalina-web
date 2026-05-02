@@ -179,7 +179,7 @@ function ProductoPage() {
       {
         label: "Agarre y terminación",
         src: product.image,
-        className: "scale-125 translate-y-3",
+        className: "scale-100",
       },
       {
         label: "Empaque de referencia",
@@ -359,7 +359,7 @@ function ProductoPage() {
                     key={item.label}
                     type="button"
                     onClick={() => setActiveImage(index)}
-                    className={`grid aspect-square rounded-lg border bg-white p-2 transition-colors ${
+                    className={`grid aspect-square overflow-hidden rounded-lg border bg-white p-2 transition-colors ${
                       activeImage === index
                         ? "border-[#0b5cff] ring-2 ring-[#0b5cff]/15"
                         : "border-border hover:border-orange/60"
@@ -375,7 +375,7 @@ function ProductoPage() {
                 ))}
               </div>
 
-              <div className="order-1 grid aspect-square rounded-2xl border border-border bg-white p-8 shadow-soft lg:order-2">
+              <div className="order-1 grid aspect-square overflow-hidden rounded-2xl border border-border bg-white p-8 shadow-soft lg:order-2">
                 <img
                   src={gallery[activeImage].src}
                   alt={product.name}

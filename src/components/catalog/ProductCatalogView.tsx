@@ -257,7 +257,7 @@ export function ProductCatalogView({
         </div>
 
         <div className="mt-4 rounded-lg border border-border bg-white p-4 shadow-soft">
-          <div className="grid gap-3 lg:grid-cols-[minmax(240px,1fr)_120px_auto]">
+          <div className="grid gap-3 lg:grid-cols-[minmax(240px,1fr)_120px_96px]">
             <label className="relative block">
               <span className="sr-only">Buscar productos</span>
               <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -282,6 +282,27 @@ export function ProductCatalogView({
             >
               <SlidersHorizontal className="h-4 w-4" /> Filtros
             </button>
+
+            <div className="flex h-12 overflow-hidden rounded-md border border-input bg-background">
+              <button
+                type="button"
+                onClick={() => setView("grid")}
+                className={`grid w-12 place-items-center transition-colors ${view === "grid" ? "bg-navy text-white" : "hover:text-orange"}`}
+                aria-label="Ver en recuadros"
+              >
+                <Grid3X3 className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setView("list")}
+                className={`grid w-12 place-items-center border-l border-input transition-colors ${
+                  view === "list" ? "bg-navy text-white" : "hover:text-orange"
+                }`}
+                aria-label="Ver en lista"
+              >
+                <List className="h-4 w-4" />
+              </button>
+            </div>
 
             <div
               className={`${filtersOpen ? "grid" : "hidden"} col-span-full gap-3 lg:grid lg:grid-cols-[minmax(180px,1fr)_minmax(170px,1fr)_minmax(160px,1fr)_minmax(180px,1fr)]`}
@@ -342,26 +363,6 @@ export function ProductCatalogView({
               </select>
             </div>
 
-            <div className="flex h-12 overflow-hidden rounded-md border border-input bg-background">
-              <button
-                type="button"
-                onClick={() => setView("grid")}
-                className={`grid w-12 place-items-center transition-colors ${view === "grid" ? "bg-navy text-white" : "hover:text-orange"}`}
-                aria-label="Ver en recuadros"
-              >
-                <Grid3X3 className="h-4 w-4" />
-              </button>
-              <button
-                type="button"
-                onClick={() => setView("list")}
-                className={`grid w-12 place-items-center border-l border-input transition-colors ${
-                  view === "list" ? "bg-navy text-white" : "hover:text-orange"
-                }`}
-                aria-label="Ver en lista"
-              >
-                <List className="h-4 w-4" />
-              </button>
-            </div>
           </div>
 
           <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">

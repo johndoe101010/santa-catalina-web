@@ -174,7 +174,7 @@ function Cart() {
               <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border p-4">
                 <button
                   onClick={clear}
-                  className="inline-flex h-11 items-center gap-2 border border-destructive/30 bg-destructive/10 px-5 text-sm font-black text-destructive transition-colors hover:bg-destructive hover:text-white"
+                  className="inline-flex h-11 items-center justify-center gap-2 border border-destructive bg-destructive px-5 text-sm font-black text-white transition-colors hover:border-navy hover:bg-navy"
                 >
                   <Trash2 className="h-4 w-4" /> Vaciar carrito
                 </button>

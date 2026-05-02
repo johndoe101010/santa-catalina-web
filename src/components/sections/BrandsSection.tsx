@@ -1,7 +1,5 @@
-import { ArrowRight } from "lucide-react";
 import { BRANDS, type Brand } from "@/lib/products";
 import { Reveal } from "@/components/motion/Reveal";
-import toolsBg from "@/assets/herramientas-electricas.png";
 
 export function BrandsSection() {
   return (
@@ -9,13 +7,6 @@ export function BrandsSection() {
       id="marcas"
       className="section-anchor relative overflow-hidden bg-gradient-navy py-16 text-cream sm:py-20 lg:py-28"
     >
-      <img
-        src={toolsBg}
-        alt=""
-        aria-hidden="true"
-        loading="lazy"
-        className="pointer-events-none absolute right-0 top-0 hidden h-[430px] w-[48vw] object-cover opacity-12 mix-blend-screen lg:block"
-      />
       <div className="relative mx-auto max-w-[1536px] px-5 sm:px-8 lg:px-10">
         <Reveal direction="up">
           <div className="mb-10 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
@@ -32,12 +23,6 @@ export function BrandsSection() {
                 Catalina. Cada logo mantiene su enlace al sitio oficial.
               </p>
             </div>
-            <a
-              href="#marcas-lista"
-              className="inline-flex h-12 items-center justify-center gap-3 rounded-md border border-cream/25 px-5 text-sm font-black text-cream transition-colors hover:border-orange hover:text-orange focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-orange/20"
-            >
-              Ver todas las marcas <ArrowRight className="h-4 w-4" />
-            </a>
           </div>
         </Reveal>
 

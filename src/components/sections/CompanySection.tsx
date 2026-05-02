@@ -57,9 +57,10 @@ export function CompanySection() {
               <span className="text-orange">presencia real.</span>
             </h2>
             <p className="text-base sm:text-lg text-foreground/70 leading-relaxed mb-10 text-pretty">
-              Desde 1994 acompañamos a familias, constructores y productores de
-              Concepción. Somos un equipo que conoce a sus clientes por nombre y
-              que recomienda lo que realmente sirve para cada trabajo.
+              Desde hace más de 20 años acompañamos a familias, constructores y
+              productores de Concepción. Somos un equipo que conoce a sus
+              clientes por nombre y que recomienda lo que realmente sirve para
+              cada trabajo.
             </p>
           </Reveal>
 

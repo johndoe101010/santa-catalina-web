@@ -81,7 +81,7 @@ export function ProductCard({
         <Link
           to="/producto/$slug"
           params={{ slug: product.slug }}
-          className="relative grid aspect-[4/3] rounded-md bg-white p-4"
+          className="relative grid aspect-[4/3] overflow-hidden rounded-md bg-white p-4"
           aria-label={`Ver ${product.name}`}
         >
           <img
@@ -145,7 +145,7 @@ export function ProductCard({
       <Link
         to="/producto/$slug"
         params={{ slug: product.slug }}
-        className="grid aspect-[1.08] rounded-t-lg bg-white p-5"
+        className="grid aspect-[1.08] overflow-hidden rounded-t-lg bg-white p-5"
         aria-label={`Ver ${product.name}`}
       >
         <img

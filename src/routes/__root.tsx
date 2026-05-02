@@ -193,7 +193,7 @@ function RootComponent() {
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       {/* <SmoothScroll /> -- Disabled to fix auto-scroll bug in search */}
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 pt-[132px] sm:pt-[140px] lg:pt-24">
         <Outlet />
       </main>
       <Footer />

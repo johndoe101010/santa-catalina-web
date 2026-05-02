@@ -12,7 +12,7 @@ const stats = [
   {
     value: "20+",
     label: "Años en Concepción",
-    text: "Acompañando a familias, constructores y productores desde 1994.",
+    text: "Acompañando a familias, constructores y productores desde hace más de 20 años.",
     icon: MapPinned,
   },
   {
@@ -41,7 +41,7 @@ export function Hero() {
       id="inicio"
       className="section-anchor relative isolate overflow-hidden bg-navy-deep text-white"
     >
-      <div className="relative min-h-[680px] lg:min-h-[720px]">
+      <div className="relative min-h-[calc(100svh-360px)] lg:min-h-[calc(100svh-240px)]">
         <div className="absolute inset-0">
           <img
             src={heroImg}
@@ -52,7 +52,7 @@ export function Hero() {
           <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(2,10,42,.52)_0%,rgba(2,10,42,.18)_46%,rgba(2,10,42,.08)_100%)]" />
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-[680px] max-w-[1536px] flex-col justify-center px-5 pb-28 pt-16 sm:px-8 lg:min-h-[720px] lg:px-12">
+        <div className="relative z-10 mx-auto flex min-h-[calc(100svh-360px)] max-w-[1536px] flex-col justify-center px-5 pb-12 pt-10 sm:px-8 lg:min-h-[calc(100svh-240px)] lg:px-12">
           <div className="max-w-3xl">
             <h1 className="font-display text-balance text-5xl font-black leading-[0.92] tracking-normal text-white sm:text-7xl lg:text-8xl">
               <span className="block">Todo para</span>
@@ -86,26 +86,26 @@ export function Hero() {
       </div>
 
       <div className="bg-navy-deep">
-        <div className="mx-auto grid max-w-[1536px] divide-y divide-white/10 px-5 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
+        <div className="mx-auto grid max-w-[1536px] grid-cols-2 divide-x divide-y divide-white/10 px-5 lg:grid-cols-4 lg:divide-y-0">
           {stats.map((item) => {
             const Icon = item.icon;
             return (
               <div
                 key={item.label}
-                className="grid grid-cols-[60px_1fr] gap-5 px-2 py-7 sm:px-6 lg:px-10"
+                className="grid grid-cols-[40px_1fr] gap-3 px-2 py-4 sm:grid-cols-[48px_1fr] sm:px-6 lg:gap-4 lg:px-8"
               >
                 <Icon
-                  className="mt-1 h-12 w-12 text-orange"
+                  className="mt-1 h-9 w-9 text-orange sm:h-10 sm:w-10"
                   strokeWidth={1.8}
                 />
                 <div>
-                  <div className="font-display text-3xl font-black leading-none text-white sm:text-4xl">
+                  <div className="font-display text-2xl font-black leading-none text-white sm:text-3xl">
                     {item.value}
                   </div>
-                  <div className="mt-2 text-sm font-black uppercase tracking-[0.08em] text-white">
+                  <div className="mt-1 text-xs font-black uppercase tracking-[0.08em] text-white">
                     {item.label}
                   </div>
-                  <p className="mt-2 text-sm leading-snug text-white/60">
+                  <p className="mt-1 max-w-[28ch] text-xs leading-snug text-white/60 sm:text-sm">
                     {item.text}
                   </p>
                 </div>
