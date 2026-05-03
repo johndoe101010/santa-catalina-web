@@ -1,15 +1,22 @@
-import { BRANDS, type Brand } from "@/lib/products";
+import { BRANDS, type Brand } from "@/lib/catalog";
 import { Reveal } from "@/components/motion/Reveal";
 
 const brandCatalogQueries: Record<string, string> = {
   DEWALT: "DeWalt",
-  STIHL: "Stihl",
-  CORONA: "Corona",
-  BAMBI: "Bambi",
-  SUVINIL: "Suvinil",
+  STIHL: "STIHL",
+  CORONA: "CORONA",
+  BAMBI: "BAMBI",
+  SUVINIL: "SUVINIL",
   TRUPER: "Truper",
-  HUSQVARNA: "Husqvarna",
-  "BELGO ARAMES": "Belgo",
+  HUSQVARNA: "HUSQVARNA",
+  "BELGO ARAMES": "BELGO ARAMES",
+  CECON: "CECON",
+  FASCY: "FASCY",
+  FIBRAC: "FIBRAC",
+  "GENERAL PAINT": "GENERAL PAINT",
+  PENNSYLVANIA: "PENNSYLVANIA",
+  SYOPAR: "SYOPAR",
+  TOTAL: "TOTAL",
 };
 
 const brandCatalogHref = (brand: Brand) => {
