@@ -1,4 +1,5 @@
 import { ExternalLink, Star } from "lucide-react";
+import { Reveal } from "@/components/motion/Reveal";
 import { REVIEWS } from "@/lib/products";
 
 export function ReviewsSection() {
@@ -8,7 +9,10 @@ export function ReviewsSection() {
       className="section-anchor bg-background py-16 sm:py-20 lg:py-24"
     >
       <div className="mx-auto max-w-[1536px] px-5 sm:px-8 lg:px-10">
-        <div className="mb-8 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
+        <Reveal
+          direction="tilt"
+          className="mb-8 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end"
+        >
           <div>
             <span className="mb-3 block text-xs font-black uppercase tracking-[0.22em] text-orange">
               Reseñas reales - Google
@@ -39,7 +43,7 @@ export function ReviewsSection() {
               </p>
             </div>
           </div>
-        </div>
+        </Reveal>
 
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {REVIEWS.map((review) => (

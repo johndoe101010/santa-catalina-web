@@ -1,7 +1,16 @@
 import { motion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
 
-type Direction = "up" | "down" | "left" | "right" | "none";
+type Direction =
+  | "up"
+  | "down"
+  | "left"
+  | "right"
+  | "fade"
+  | "zoom"
+  | "compress"
+  | "tilt"
+  | "none";
 
 const variants: Record<Direction, Variants> = {
   up: {
@@ -19,6 +28,22 @@ const variants: Record<Direction, Variants> = {
   right: {
     hidden: { opacity: 0, x: 28, y: 20, scale: 0.986 },
     show: { opacity: 1, x: 0, y: 0, scale: 1 },
+  },
+  fade: {
+    hidden: { opacity: 0 },
+    show: { opacity: 1 },
+  },
+  zoom: {
+    hidden: { opacity: 0, y: 18, scale: 0.94 },
+    show: { opacity: 1, y: 0, scale: 1 },
+  },
+  compress: {
+    hidden: { opacity: 0, y: 16, scaleY: 0.88 },
+    show: { opacity: 1, y: 0, scaleY: 1 },
+  },
+  tilt: {
+    hidden: { opacity: 0, y: 22, rotateX: -8 },
+    show: { opacity: 1, y: 0, rotateX: 0 },
   },
   none: {
     hidden: { opacity: 0 },

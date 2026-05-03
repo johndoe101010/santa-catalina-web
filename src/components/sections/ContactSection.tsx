@@ -1,6 +1,7 @@
 import { Clock, Mail, MapPin } from "lucide-react";
 import type { ReactNode } from "react";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { Reveal } from "@/components/motion/Reveal";
 import { SITE, waUrl } from "@/lib/site";
 
 export function ContactSection() {
@@ -46,7 +47,7 @@ export function ContactSection() {
             />
             <div className="grid grid-cols-[58px_1fr] gap-6 border-t border-white/14 py-7">
               <Clock className="h-9 w-9 text-orange" />
-              <div>
+              <Reveal direction="left">
                 <h3 className="font-display text-lg font-black uppercase tracking-[0.14em] text-white">
                   Horarios
                 </h3>
@@ -63,7 +64,7 @@ export function ContactSection() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </Reveal>
             </div>
           </div>
         </div>
@@ -86,7 +87,7 @@ function ContactItem({
   return (
     <div className="grid grid-cols-[58px_1fr] gap-6 border-t border-white/14 py-7 first:border-t-0">
       <span className="text-orange">{icon}</span>
-      <div>
+      <Reveal direction="up">
         <h3 className="font-display text-lg font-black uppercase tracking-[0.14em] text-white">
           {title}
         </h3>
@@ -94,7 +95,7 @@ function ContactItem({
           {content}
         </p>
         {children && <div className="mt-5">{children}</div>}
-      </div>
+      </Reveal>
     </div>
   );
 }

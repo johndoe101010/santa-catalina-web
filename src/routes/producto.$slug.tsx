@@ -30,6 +30,7 @@ import {
   X,
 } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { ShinyButton } from "@/components/ui/shiny-button";
 import { useCart } from "@/lib/cart";
 import { absoluteUrl, canonicalUrl, SITE, waUrl } from "@/lib/site";
 import {
@@ -359,7 +360,7 @@ function ProductoPage() {
                     key={item.label}
                     type="button"
                     onClick={() => setActiveImage(index)}
-                    className={`grid aspect-square overflow-hidden rounded-lg border bg-white p-2 transition-colors ${
+                    className={`grid aspect-square overflow-hidden rounded-2xl border bg-white p-2 transition-colors ${
                       activeImage === index
                         ? "border-[#0b5cff] ring-2 ring-[#0b5cff]/15"
                         : "border-border hover:border-orange/60"
@@ -369,7 +370,7 @@ function ProductoPage() {
                     <img
                       src={item.src}
                       alt={item.label}
-                      className={`h-full w-full object-contain ${item.className}`}
+                      className={`h-full w-full rounded-xl object-contain ${item.className}`}
                     />
                   </button>
                 ))}
@@ -456,7 +457,7 @@ function ProductoPage() {
                   </button>
                 </div>
               </div>
-              <button
+              <ShinyButton
                 type="button"
                 onClick={handleAdd}
                 className={`inline-flex h-14 items-center justify-center gap-3 rounded-lg px-6 font-display text-lg font-black shadow-orange transition-colors ${
@@ -471,7 +472,7 @@ function ProductoPage() {
                   <ShoppingCart className="h-6 w-6" />
                 )}
                 {added ? "Agregado" : "Agregar al carrito"}
-              </button>
+              </ShinyButton>
             </div>
 
             <a
@@ -543,7 +544,7 @@ function ProductoPage() {
 
         <section className="mx-auto grid max-w-[1536px] gap-6 px-5 py-8 sm:px-8 lg:grid-cols-[1fr_320px] lg:px-10">
           <div className="overflow-hidden rounded-2xl border border-border bg-white shadow-soft">
-            <div className="grid border-b border-border bg-background sm:grid-cols-2 lg:grid-cols-5">
+            <div className="product-detail-tabs grid border-b border-border bg-background sm:grid-cols-2 lg:grid-cols-5">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
                 const isActive = activeTab === tab.id;

@@ -13,7 +13,7 @@ export function FaqSection() {
       className="section-anchor landing-section py-24 lg:py-32 bg-secondary/40"
     >
       <div className="mx-auto max-w-3xl px-5">
-        <Reveal direction="up">
+        <Reveal direction="compress">
           <div className="text-center mb-12">
             <span className="inline-block text-xs font-bold uppercase tracking-widest text-orange mb-3">
               Preguntas frecuentes
@@ -30,17 +30,17 @@ export function FaqSection() {
             return (
               <Reveal key={f.q} direction="left" delay={i * 0.06}>
                 <div
-                  className={`border bg-card ${isOpen ? "border-orange shadow-orange" : "border-border shadow-soft"} overflow-hidden transition-all`}
+                  className={`rounded-2xl border bg-card ${isOpen ? "border-orange shadow-orange" : "border-border shadow-soft"} overflow-hidden transition-all`}
                 >
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
-                    className="w-full flex items-center justify-between gap-4 p-5 sm:p-6 text-left"
+                    className="w-full rounded-2xl flex items-center justify-between gap-4 p-5 sm:p-6 text-left"
                   >
                     <span className="font-display font-bold text-base sm:text-lg">
                       {f.q}
                     </span>
                     <span
-                      className={`grid h-9 w-9 shrink-0 place-items-center border border-border bg-secondary transition-transform ${isOpen ? "rotate-45 border-orange bg-orange text-white" : ""}`}
+                      className={`grid h-9 w-9 shrink-0 place-items-center rounded-full border border-border bg-secondary transition-transform ${isOpen ? "rotate-45 border-orange bg-orange text-white" : ""}`}
                     >
                       <Plus className="h-4 w-4" />
                     </span>

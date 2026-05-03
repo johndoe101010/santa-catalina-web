@@ -12,15 +12,15 @@ export function FeaturedProducts() {
   const featured = PRODUCTS.filter((product) => product.featured).slice(0, 8);
   const [addedSlug, setAddedSlug] = useState<string | null>(null);
 
-  const handleAdd = (product: Product) => {
-    add(product.slug);
+  const handleAdd = (product: Product, quantity = 1) => {
+    add(product.slug, quantity);
     setAddedSlug(product.slug);
     window.setTimeout(
       () =>
         setAddedSlug((current) => (current === product.slug ? null : current)),
       1250,
     );
-    toast.success(`${product.name} agregado al carrito`, {
+    toast.success(`${quantity} x ${product.name} agregado al carrito`, {
       icon: <CheckCircle className="h-7 w-7 text-whatsapp" />,
       duration: 2600,
       className: "cart-success-toast",
@@ -33,7 +33,7 @@ export function FeaturedProducts() {
       className="section-anchor relative overflow-hidden bg-background py-16 sm:py-20 lg:py-24"
     >
       <div className="relative mx-auto max-w-[1536px] px-5 sm:px-8 lg:px-10">
-        <Reveal direction="up">
+        <Reveal direction="zoom">
           <div className="mb-8 flex flex-col justify-between gap-6 sm:mb-12 sm:flex-row sm:items-end">
             <div className="max-w-2xl">
               <span className="mb-3 inline-block text-xs font-black uppercase tracking-[0.24em] text-orange">

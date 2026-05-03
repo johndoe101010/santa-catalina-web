@@ -1,3 +1,5 @@
+import { useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import {
   ArrowDown,
   ArrowRight,
@@ -7,6 +9,7 @@ import {
   Star,
 } from "lucide-react";
 import heroImg from "@/assets/hero-fachada.jpg";
+import { Reveal } from "@/components/motion/Reveal";
 
 const stats = [
   {
@@ -36,6 +39,19 @@ const stats = [
 ];
 
 export function Hero() {
+  const [titleNumber, setTitleNumber] = useState(0);
+  const titles = useMemo(() => ["construir", "reparar", "equipar"], []);
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      setTitleNumber((current) =>
+        current === titles.length - 1 ? 0 : current + 1,
+      );
+    }, 2000);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [titleNumber, titles]);
+
   return (
     <section
       id="inicio"
@@ -53,11 +69,29 @@ export function Hero() {
         </div>
 
         <div className="relative z-10 mx-auto flex min-h-[calc(100svh-360px)] max-w-[1536px] flex-col justify-center px-5 pb-12 pt-10 sm:px-8 lg:min-h-[calc(100svh-240px)] lg:px-12">
-          <div className="max-w-3xl">
+          <Reveal direction="left" className="max-w-3xl">
             <h1 className="font-display text-balance text-5xl font-black leading-[0.92] tracking-normal text-white sm:text-7xl lg:text-8xl">
               <span className="block">Todo para</span>
-              <span className="block text-orange">construir,</span>
-              <span className="block text-orange">reparar y equipar.</span>
+              <span className="relative block h-[1em] overflow-hidden text-orange">
+                {titles.map((title, index) => (
+                  <motion.span
+                    key={title}
+                    className="absolute inset-0 block"
+                    initial={{ opacity: 0, y: "-100%" }}
+                    animate={
+                      titleNumber === index
+                        ? { opacity: 1, y: 0 }
+                        : {
+                            opacity: 0,
+                            y: titleNumber > index ? "-150%" : "150%",
+                          }
+                    }
+                    transition={{ type: "spring", stiffness: 50 }}
+                  >
+                    {title}
+                  </motion.span>
+                ))}
+              </span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/84 sm:text-xl">
               Ferretería, obra, hogar, campo y herramientas con un catálogo
@@ -81,7 +115,7 @@ export function Hero() {
                 Explorar categorías <ArrowDown className="h-5 w-5" />
               </a>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
 

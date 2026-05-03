@@ -78,7 +78,7 @@ function Cart() {
 
       <div className="mx-auto max-w-[1360px] px-5 py-10">
         {detailed.length === 0 ? (
-          <div className="border border-border bg-card p-12 text-center shadow-soft">
+          <div className="rounded-2xl border border-border bg-card p-12 text-center shadow-soft">
             <ShoppingCart className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
             <p className="mb-6 text-muted-foreground">Tu carrito está vacío.</p>
             <Link
@@ -90,7 +90,7 @@ function Cart() {
           </div>
         ) : (
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_390px]">
-            <div className="border border-border bg-card shadow-soft">
+            <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
               <div className="grid grid-cols-[1fr_120px_140px_120px_48px] border-b border-border bg-secondary px-5 py-4 text-xs font-black uppercase tracking-[0.16em] text-muted-foreground max-lg:hidden">
                 <span>Producto</span>
                 <span>Precio</span>
@@ -108,12 +108,12 @@ function Cart() {
                     <Link
                       to="/producto/$slug"
                       params={{ slug: product.slug }}
-                      className="grid h-24 border border-border bg-white p-2"
+                      className="grid h-24 overflow-hidden rounded-xl border border-border bg-white p-2"
                     >
                       <img
                         src={product.image}
                         alt={product.name}
-                        className="h-full w-full object-contain"
+                        className="h-full w-full rounded-lg object-contain"
                       />
                     </Link>
                     <div className="min-w-0">
@@ -137,7 +137,7 @@ function Cart() {
                     {formatGs(product.price)}
                   </div>
 
-                  <div className="flex h-10 w-36 border border-input bg-background">
+                  <div className="flex h-10 w-36 overflow-hidden rounded-xl border border-input bg-background">
                     <button
                       onClick={() => setQty(product.slug, qty - 1)}
                       className="grid w-10 place-items-center border-r border-input hover:text-orange"
@@ -163,7 +163,7 @@ function Cart() {
 
                   <button
                     onClick={() => remove(product.slug)}
-                    className="grid h-10 w-10 place-items-center border border-border text-muted-foreground transition-colors hover:border-destructive hover:text-destructive"
+                    className="grid h-10 w-10 place-items-center rounded-xl border border-border text-muted-foreground transition-colors hover:border-destructive hover:text-destructive"
                     aria-label={`Quitar ${product.name}`}
                   >
                     <Trash2 className="h-4 w-4" />
@@ -187,7 +187,7 @@ function Cart() {
               </div>
             </div>
 
-            <aside className="h-fit border border-border bg-card p-6 shadow-soft lg:sticky lg:top-28">
+            <aside className="h-fit rounded-2xl border border-border bg-card p-6 shadow-soft lg:sticky lg:top-28">
               <h2 className="font-display text-2xl font-black text-foreground">
                 Resumen del pedido
               </h2>
@@ -208,7 +208,7 @@ function Cart() {
               </div>
 
               <div className="mt-5 grid gap-3">
-                <label className="flex items-center gap-3 border border-border bg-background px-4 py-3 text-sm font-bold">
+                <label className="flex items-center gap-3 rounded-xl border border-border bg-background px-4 py-3 text-sm font-bold">
                   <input
                     type="radio"
                     name="delivery"
@@ -218,7 +218,7 @@ function Cart() {
                   />
                   Retiro en tienda
                 </label>
-                <label className="flex items-center gap-3 border border-border bg-background px-4 py-3 text-sm font-bold">
+                <label className="flex items-center gap-3 rounded-xl border border-border bg-background px-4 py-3 text-sm font-bold">
                   <input
                     type="radio"
                     name="delivery"
@@ -236,7 +236,7 @@ function Cart() {
                   <input
                     value={customerName}
                     onChange={(event) => setCustomerName(event.target.value)}
-                    className="h-12 border border-input bg-background px-4 text-sm font-semibold normal-case tracking-normal text-foreground outline-none focus:border-orange"
+                    className="h-12 rounded-xl border border-input bg-background px-4 text-sm font-semibold normal-case tracking-normal text-foreground outline-none focus:border-orange"
                     placeholder="Nombre y apellido"
                   />
                 </label>
@@ -245,7 +245,7 @@ function Cart() {
                   <input
                     value={customerPhone}
                     onChange={(event) => setCustomerPhone(event.target.value)}
-                    className="h-12 border border-input bg-background px-4 text-sm font-semibold normal-case tracking-normal text-foreground outline-none focus:border-orange"
+                    className="h-12 rounded-xl border border-input bg-background px-4 text-sm font-semibold normal-case tracking-normal text-foreground outline-none focus:border-orange"
                     placeholder="0986 000 000"
                     inputMode="tel"
                   />
@@ -255,11 +255,11 @@ function Cart() {
                   <textarea
                     value={notes}
                     onChange={(event) => setNotes(event.target.value)}
-                    className="min-h-24 resize-y border border-input bg-background px-4 py-3 text-sm font-semibold normal-case tracking-normal text-foreground outline-none focus:border-orange"
+                    className="min-h-24 resize-y rounded-xl border border-input bg-background px-4 py-3 text-sm font-semibold normal-case tracking-normal text-foreground outline-none focus:border-orange"
                     placeholder="Ej.: necesito retirar por la tarde, confirmar stock o coordinar envío."
                   />
                 </label>
-                <p className="rounded-md border border-border bg-secondary/60 px-4 py-3 text-xs leading-relaxed text-muted-foreground">
+                <p className="rounded-xl border border-border bg-secondary/60 px-4 py-3 text-xs leading-relaxed text-muted-foreground">
                   Si tenés una promoción vigente, mencionála al enviar el pedido
                   por WhatsApp para que el equipo la confirme.
                 </p>

@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { Reveal } from "@/components/motion/Reveal";
 import { CATEGORIES } from "@/lib/products";
 
 export function CategoriesSection() {
@@ -9,7 +10,10 @@ export function CategoriesSection() {
       className="section-anchor bg-background py-16 sm:py-20 lg:py-24"
     >
       <div className="mx-auto max-w-[1536px] px-5 sm:px-8 lg:px-10">
-        <div className="mb-8 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
+        <Reveal
+          direction="down"
+          className="mb-8 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end"
+        >
           <div>
             <span className="mb-4 block text-xs font-black uppercase tracking-[0.22em] text-orange">
               Categorías
@@ -25,7 +29,7 @@ export function CategoriesSection() {
           >
             Ver catálogo completo <ArrowUpRight className="h-4 w-4" />
           </Link>
-        </div>
+        </Reveal>
 
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {CATEGORIES.slice(0, 9).map((category) => (

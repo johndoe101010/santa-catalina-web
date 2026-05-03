@@ -412,3 +412,20 @@
     animation-duration: 32s !important;
   }
 }
+
+button,
+a[href].inline-flex {
+  border-radius: 1rem !important;
+}
+
+.flex.overflow-hidden:has(> button) {
+  border-radius: 1rem !important;
+}
+
+.flex.overflow-hidden > button {
+  border-radius: 0 !important;
+}
+
+.product-detail-tabs > button {
+  border-radius: 0 !important;
+}

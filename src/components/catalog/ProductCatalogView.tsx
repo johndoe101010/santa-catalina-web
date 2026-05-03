@@ -208,13 +208,7 @@ export function ProductCatalogView({
               {description}
             </p>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
-            <a
-              href="/catalogo"
-              className="inline-flex h-13 items-center justify-between rounded-lg bg-navy px-5 font-display text-sm font-black text-white transition-colors hover:bg-orange"
-            >
-              Ver todo el catálogo <ArrowRight className="h-4 w-4" />
-            </a>
+          <div className="grid gap-3">
             <a
               href={waUrl(
                 "Hola, quiero recibir asesoramiento para elegir productos del catálogo.",
@@ -382,6 +376,7 @@ export function ProductCatalogView({
 
         {filtered.length > 0 ? (
           <div
+            id="productos"
             className={
               view === "grid"
                 ? "mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
@@ -399,7 +394,10 @@ export function ProductCatalogView({
             ))}
           </div>
         ) : (
-          <div className="mt-8 rounded-2xl border border-border bg-white p-10 text-center shadow-soft">
+          <div
+            id="productos"
+            className="mt-8 rounded-2xl border border-border bg-white p-10 text-center shadow-soft"
+          >
             <h2 className="font-display text-2xl font-black text-navy-deep">
               No encontramos productos con esos filtros.
             </h2>
