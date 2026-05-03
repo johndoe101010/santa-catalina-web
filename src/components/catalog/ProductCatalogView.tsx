@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { ProductCard } from "@/components/catalog/ProductCard";
 import { useCart } from "@/lib/cart";
-import { CATEGORIES, PRODUCTS, type Product } from "@/lib/products";
+import { CATEGORIES, PRODUCTS, type Product } from "@/lib/catalog";
 import { waUrl } from "@/lib/site";
 
 type CatalogViewProps = {
