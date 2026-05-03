@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import type { Product } from "./catalog";
+import type { Product } from "./products";
 
 export type CartItem = { slug: string; qty: number };
 
