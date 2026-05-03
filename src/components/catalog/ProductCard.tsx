@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { CheckCircle, Minus, Plus, ShoppingCart } from "lucide-react";
 import { useState } from "react";
-import { type Product, formatGs } from "@/lib/products";
+import { type Product, formatGs } from "@/lib/catalog";
 
 type ProductCardProps = {
   product: Product;
