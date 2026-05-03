@@ -39,7 +39,7 @@ import {
   PRODUCTS,
   type Product,
   formatGs,
-} from "@/lib/products";
+} from "@/lib/catalog";
 
 const productAvailability = (stock: Product["stock"]) => {
   if (stock === "ultimas") return "https://schema.org/LimitedAvailability";
