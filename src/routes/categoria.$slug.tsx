@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ProductCatalogView } from "@/components/catalog/ProductCatalogView";
 import { absoluteUrl, canonicalUrl, SITE } from "@/lib/site";
-import { CATEGORIES } from "@/lib/products";
+import { CATEGORIES } from "@/lib/catalog";
 
 export const Route = createFileRoute("/categoria/$slug")({
   loader: ({ params }) => {
