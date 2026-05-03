@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useCart, buildWhatsAppMessage } from "@/lib/cart";
-import { PRODUCTS, formatGs } from "@/lib/products";
+import { PRODUCTS, formatGs } from "@/lib/catalog";
 import { canonicalUrl, SITE, waUrl } from "@/lib/site";
 import { Minus, Plus, ShoppingCart, Trash2 } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
